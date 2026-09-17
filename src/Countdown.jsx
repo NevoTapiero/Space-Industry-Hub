@@ -26,8 +26,8 @@ export default function Countdown({ target }) {
   const cells = [
     { num: pad(days), label: 'Days' },
     { num: pad(hours), label: 'Hours' },
-    { num: pad(minutes), label: 'Minutes' },
-    { num: pad(seconds), label: 'Seconds' },
+    { num: pad(minutes), label: 'Min' },
+    { num: pad(seconds), label: 'Sec' },
   ]
 
   return (

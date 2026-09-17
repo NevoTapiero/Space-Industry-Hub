@@ -1,13 +1,11 @@
-// Data layer: live launch data + spaceflight news, with localStorage caching.
-// Launch Library 2 (The Space Devs) allows only ~15 anonymous requests/hour,
-// so every response is cached for 30 minutes and reused on failure.
+// Live data: launches (Launch Library 2) + news (Spaceflight News API).
+// LL2 allows ~15 anonymous requests/hour, so responses are cached in
+// localStorage for 30 minutes and reused when a refresh fails.
 
 const CACHE_TTL_MS = 30 * 60 * 1000
 
 const LL2_UPCOMING =
-  'https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=12&mode=detailed&hide_recent_previous=true'
-const SNAPI_ARTICLES =
-  'https://api.spaceflightnewsapi.net/v4/articles/?limit=10&ordering=-published_at'
+  'https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=30&mode=detailed&hide_recent_previous=true'
 
 function readCache(key) {
   try {
@@ -53,6 +51,7 @@ export async function fetchUpcomingLaunches() {
     status: l.status?.abbrev || '',
     statusName: l.status?.name || '',
     provider: l.launch_service_provider?.name || '',
+    providerId: l.launch_service_provider?.id || null,
     rocket: l.rocket?.configuration?.full_name || '',
     pad: l.pad?.name || '',
     location: l.pad?.location?.name || '',
@@ -65,8 +64,13 @@ export async function fetchUpcomingLaunches() {
   return { launches, stale }
 }
 
-export async function fetchNews() {
-  const { data, stale } = await cachedFetch('sih.news', SNAPI_ARTICLES)
+export async function fetchNews(query = '', limit = 12) {
+  const url = new URL('https://api.spaceflightnewsapi.net/v4/articles/')
+  url.searchParams.set('limit', String(limit))
+  url.searchParams.set('ordering', '-published_at')
+  if (query) url.searchParams.set('search', query)
+  const cacheKey = `sih.news.${query || 'all'}`
+  const { data, stale } = await cachedFetch(cacheKey, url.toString())
   const articles = (data.results || []).map((a) => ({
     id: a.id,
     title: a.title,
