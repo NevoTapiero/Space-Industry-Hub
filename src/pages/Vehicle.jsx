@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { vehicleBySlug, companyBySlug, SOURCES } from '../data/index.js'
+import { vehicleBySlug, companyBySlug, SOURCES, imageForText } from '../data/index.js'
 import Cutaway from '../components/Cutaway.jsx'
 import EngineCluster from '../components/EngineCluster.jsx'
 import { Backdrop, Reveal } from '../components/ui.jsx'
@@ -102,6 +102,13 @@ export default function Vehicle() {
         <div className="cutaway-wrap">
           <div className="cutaway-svg-box">
             <Cutaway vehicle={v} selectedId={selectedId} onSelect={setSelectedId} />
+            <div className="cut-legend">
+              <span><span className="sw" style={{ background: 'rgba(126,166,255,0.35)', border: '1px solid #8fb4f5' }} />מבנה ומכלים</span>
+              <span><span className="sw" style={{ background: 'rgba(255,154,92,0.4)', border: '1px solid #ff9a5c' }} />מערכי הנעה</span>
+              {v.sections.some((s) => s.kind === 'heatshield') && (
+                <span><span className="sw" style={{ background: '#ff9a5c' }} />הקו הכתום: אריחי מגן החום, בצד שפוגש את האטמוספרה בחזרה</span>
+              )}
+            </div>
           </div>
 
           <div>
@@ -149,15 +156,24 @@ export default function Vehicle() {
         {/* ---------- fun facts ---------- */}
         {v.fun_facts_he?.length > 0 && (
           <Reveal>
-            <div className="eyebrow section-gap">Did You Know</div>
-            <div className="program-grid">
-              {v.fun_facts_he.map((f, i) => (
-                <div className="program" key={i}>
-                  <div className="program-desc" style={{ marginTop: 0, fontSize: 14.5 }}>
-                    {f}
+            <div className="eyebrow section-gap">ידעת ש… · Did You Know</div>
+            <div className="program-grid" style={{ marginTop: 18 }}>
+              {v.fun_facts_he.map((f, i) => {
+                const img = imageForText(f) || imageForText(v.name_en)
+                return (
+                  <div className="fact-card" key={i}>
+                    {img && (
+                      <div className="fact-card-img">
+                        <img src={img.url} alt="" loading="lazy" />
+                      </div>
+                    )}
+                    <div className="fact-card-body">
+                      <span className="fact-num">FACT {String(i + 1).padStart(2, '0')}</span>
+                      {f}
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </Reveal>
         )}

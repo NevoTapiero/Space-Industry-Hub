@@ -85,15 +85,13 @@ export default function Home() {
       <section className="container" style={{ paddingBottom: 80 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 18 }}>
           <Reveal className="panel">
-            <div className="eyebrow" style={{ marginBottom: 14 }}>
-              Launch Manifest
-            </div>
+            <div className="panel-title">השיגורים הבאים</div>
+            <div className="panel-sub">Launch Manifest · Live</div>
             {data.loading ? <div className="loading">LOADING…</div> : <LaunchList launches={data.launches.slice(1, 6)} />}
           </Reveal>
           <Reveal className="panel" delay={100}>
-            <div className="eyebrow" style={{ marginBottom: 14 }}>
-              Industry Feed
-            </div>
+            <div className="panel-title">חדשות התעשייה</div>
+            <div className="panel-sub">Industry Feed</div>
             {news.loading ? <div className="loading">LOADING…</div> : <NewsList articles={news.articles} />}
           </Reveal>
         </div>

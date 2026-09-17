@@ -105,15 +105,19 @@ export default function Sources() {
             </Reveal>
             {[...new Set(NOTEBOOK.sources.map((s) => s.category))].map((cat) => (
               <Reveal key={cat}>
-                <div className="eyebrow" style={{ marginTop: 26, marginBottom: 10 }}>
-                  {cat}
+                <div className="eyebrow" style={{ marginTop: 30, marginBottom: 12 }}>
+                  {cat} · {NOTEBOOK.sources.filter((s) => s.category === cat).length}
                 </div>
-                <div className="filter-row" style={{ margin: 0 }}>
+                <div className="dir-grid">
                   {NOTEBOOK.sources
                     .filter((s) => s.category === cat)
                     .map((s) => (
-                      <a key={s.url} className="filter-btn" href={s.url} target="_blank" rel="noreferrer" title={s.domain}>
-                        {s.title} ↗
+                      <a key={s.url} className="dir-card" href={s.url} target="_blank" rel="noreferrer">
+                        <img src={`https://www.google.com/s2/favicons?domain=${s.domain}&sz=64`} alt="" loading="lazy" />
+                        <div>
+                          <div className="dir-title">{s.title}</div>
+                          <div className="dir-domain">{s.domain}</div>
+                        </div>
                       </a>
                     ))}
                 </div>

@@ -158,9 +158,23 @@ export function fmtDate(iso) {
   return new Date(iso).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
 }
 
+const STATUS_HE = {
+  Go: 'מאושר לשיגור',
+  TBC: 'ממתין לאישור',
+  TBD: 'מועד לא סופי',
+  Success: 'הצליח',
+  Failure: 'נכשל',
+  Hold: 'בהשהיה',
+  'In Flight': 'בטיסה',
+}
+
 export function StatusChip({ status }) {
-  const cls = status === 'Go' ? 'go' : status === 'TBD' || status === 'TBC' ? 'tbd' : ''
-  return <span className={`chip ${cls}`}>{status || '—'}</span>
+  const cls = status === 'Go' || status === 'Success' ? 'go' : status === 'TBD' || status === 'TBC' || status === 'Hold' ? 'tbd' : ''
+  return (
+    <span className={`chip ${cls}`} title={`סטטוס: ${status}`}>
+      {STATUS_HE[status] || status || 'לא ידוע'}
+    </span>
+  )
 }
 
 export function LaunchList({ launches, withWebcast = false }) {

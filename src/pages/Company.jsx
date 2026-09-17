@@ -1,7 +1,8 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { companyBySlug, vehiclesOfCompany } from '../data/index.js'
+import { companyBySlug, vehiclesOfCompany, getImage, slugifyName, imageForText } from '../data/index.js'
 import { useLaunches, useNews } from '../hooks.js'
 import { Backdrop, Reveal, LaunchList, NewsList } from '../components/ui.jsx'
+import Silhouette from '../components/Silhouette.jsx'
 
 export default function Company() {
   const { slug } = useParams()
@@ -49,38 +50,50 @@ export default function Company() {
               ))}
             </Reveal>
 
-            {/* vehicles of this company */}
+            {/* vehicles of this company, real silhouettes */}
             {vehicles.length > 0 && (
               <Reveal>
-                <div className="eyebrow section-gap" style={{ marginBottom: 6 }}>
-                  Fleet
-                </div>
-                <div className="filter-row">
+                <div className="eyebrow section-gap">הצי · Fleet</div>
+                <div className="fleet-grid">
                   {vehicles.map((v) => (
-                    <Link key={v.slug} to={`/vehicles/${v.slug}`} className="filter-btn">
-                      {v.name_he} ↗
+                    <Link key={v.slug} to={`/vehicles/${v.slug}`} className="fleet-card">
+                      <Silhouette vehicle={v} h={110} />
+                      <div className="fleet-name">{v.name_he}</div>
+                      <div className="fleet-h">{v.dims.height_m} m</div>
                     </Link>
                   ))}
                 </div>
               </Reveal>
             )}
 
-            {/* programs */}
+            {/* programs with imagery */}
             {c.programs?.length > 0 && (
               <Reveal>
-                <div className="eyebrow section-gap">Programs</div>
+                <div className="eyebrow section-gap">תוכניות · Programs</div>
                 <div className="program-grid">
-                  {c.programs.map((p) => (
-                    <div className="program" key={p.name}>
-                      <div className="program-name">{p.name}</div>
-                      {p.status_he && (
-                        <span className="chip" style={{ marginTop: 8 }}>
-                          {p.status_he}
-                        </span>
-                      )}
-                      <div className="program-desc">{p.desc_he}</div>
-                    </div>
-                  ))}
+                  {c.programs.map((p) => {
+                    const img = getImage(`program-${slugifyName(p.name)}`) || imageForText(`${p.name} ${p.desc_he || ''}`)
+                    return (
+                      <div className="program" key={p.name}>
+                        {img ? (
+                          <div className="program-img">
+                            <img src={img.url} alt="" loading="lazy" />
+                          </div>
+                        ) : (
+                          <div className="program-ph">{p.name.slice(0, 2)}</div>
+                        )}
+                        <div className="program-body">
+                          <div className="program-name">{p.name}</div>
+                          {p.status_he && (
+                            <span className="chip" style={{ marginTop: 8 }}>
+                              {p.status_he}
+                            </span>
+                          )}
+                          <div className="program-desc">{p.desc_he}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </Reveal>
             )}
@@ -95,16 +108,26 @@ export default function Company() {
                   </h2>
                 </Reveal>
                 <div className="timeline" style={{ '--tl-color': c.color }}>
-                  {c.timeline.map((t, i) => (
-                    <Reveal key={i} className="tl-item" delay={Math.min(i * 40, 200)}>
-                      <div className="tl-date">
-                        {t.date}
-                        {t.tag_he && <span className="chip tl-tag">{t.tag_he}</span>}
-                      </div>
-                      <div className="tl-title">{t.title_he}</div>
-                      <div className="tl-text">{t.text_he}</div>
-                    </Reveal>
-                  ))}
+                  {c.timeline.map((t, i) => {
+                    const thumb = imageForText(`${t.title_he} ${t.tag_he || ''} ${t.text_he}`)
+                    return (
+                      <Reveal key={i} className={`tl-item ${thumb ? 'has-thumb' : ''}`} delay={Math.min(i * 40, 200)}>
+                        <div>
+                          <div className="tl-date">
+                            {t.date}
+                            {t.tag_he && <span className="chip tl-tag">{t.tag_he}</span>}
+                          </div>
+                          <div className="tl-title">{t.title_he}</div>
+                          <div className="tl-text">{t.text_he}</div>
+                        </div>
+                        {thumb && (
+                          <div className="tl-thumb">
+                            <img src={thumb.url} alt="" loading="lazy" />
+                          </div>
+                        )}
+                      </Reveal>
+                    )
+                  })}
                 </div>
               </>
             )}
@@ -113,15 +136,13 @@ export default function Company() {
           {/* side rail: live launches + news for this company */}
           <div style={{ display: 'grid', gap: 18, alignContent: 'start' }}>
             <Reveal className="panel">
-              <div className="eyebrow" style={{ marginBottom: 12 }}>
-                Upcoming · {c.name_en}
-              </div>
+              <div className="panel-title">שיגורים קרובים</div>
+              <div className="panel-sub">Upcoming · {c.name_en}</div>
               {data.loading ? <div className="loading">LOADING…</div> : <LaunchList launches={companyLaunches.slice(0, 5)} />}
             </Reveal>
             <Reveal className="panel" delay={80}>
-              <div className="eyebrow" style={{ marginBottom: 12 }}>
-                News
-              </div>
+              <div className="panel-title">חדשות</div>
+              <div className="panel-sub">News Feed</div>
               {news.loading ? <div className="loading">LOADING…</div> : <NewsList articles={news.articles.slice(0, 6)} />}
             </Reveal>
           </div>

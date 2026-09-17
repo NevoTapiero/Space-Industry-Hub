@@ -1,0 +1,68 @@
+{
+  "program-new-glenn": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Blue_Origins_New_Glenn_Launch_%2829350547990%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Kevin Gill from Los Angeles, CA, United States · CC BY-SA 2.0",
+    "license": "CC BY-SA 2.0",
+    "source_title": "File:Blue Origins New Glenn Launch (29350547990).png"
+  },
+  "program-be-4": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Blue_Origin_BE-4_rocket_engine%2C_sn_103%2C_April_2018_--_LOX_inlet_side_view%2C_minus_nozzle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "N2e · CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source_title": "File:Blue Origin BE-4 rocket engine, sn 103, April 2018 -- LOX inlet side view, minus nozzle.jpg"
+  },
+  "program-new-shepard": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/New_Shepard_spacecraft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "NASA · Public domain",
+    "license": "Public domain",
+    "source_title": "File:New Shepard spacecraft.jpg"
+  },
+  "program-shavit": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Shavit_3rd_stage.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": ".\n\nThe original uploader was טל ענבר at Hebrew Wikipedia. · CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source_title": "File:Shavit 3rd stage.JPG"
+  },
+  "program-beresheet-2": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Beresheet_model_on_Habima_Square_20190222_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "TaBaZzz · CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source_title": "File:Beresheet model on Habima Square 20190222 03.jpg"
+  },
+  "program-gateway": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Gateway-configuration-20180705.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "NASA · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Gateway-configuration-20180705.jpg"
+  },
+  "program-commercial-crew": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/SpaceX_Crew_Dragon.jpg/3840px-SpaceX_Crew_Dragon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "NASA/SpaceX · Public domain",
+    "license": "Public domain",
+    "source_title": "File:SpaceX Crew Dragon.jpg"
+  },
+  "program-electron": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Rocket_Lab%E2%80%99s_Electron-launched_private_mission_to_Venus_will_deploy_a_small_probe_from_a_high-energy_Photon.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Richard French, Christophe Mandy, Richard Hunter, Ehson Mosleh, Doug Sinclair, Peter Beck, Sara Seager, Janusz J. Petkowski, Christopher E. Carr, David H. Grinspoon, Darrel Baumgardner and on behalf of the Rocket Lab Venus Team · CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source_title": "File:Rocket Lab’s Electron-launched private mission to Venus will deploy a small probe from a high-energy Photon.webp"
+  },
+  "program-starship": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Starship_full_stack_with_Jeep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Hotel Pika · CC BY-SA 2.0",
+    "license": "CC BY-SA 2.0",
+    "source_title": "File:Starship full stack with Jeep.jpg"
+  },
+  "program-falcon-9": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Falcon_9_first_stage_attempts_landing_on_ASDS_after_CRS-6_%2817170624412%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "SpaceX · CC0",
+    "license": "CC0",
+    "source_title": "File:Falcon 9 first stage attempts landing on ASDS after CRS-6 (17170624412).jpg"
+  },
+  "program-dragon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/ISS-31_SpaceX_Dragon_spacecraft_is_grappled_by_Canadarm2.jpg/3840px-ISS-31_SpaceX_Dragon_spacecraft_is_grappled_by_Canadarm2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "NASA · Public domain",
+    "license": "Public domain",
+    "source_title": "File:ISS-31 SpaceX Dragon spacecraft is grappled by Canadarm2.jpg"
+  }
+}
