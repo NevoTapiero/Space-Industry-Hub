@@ -1,0 +1,50 @@
+{
+  "vehicle-starship-hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Starship_full_stack_with_Jeep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Hotel Pika · CC BY-SA 2.0",
+    "license": "CC BY-SA 2.0",
+    "source_title": "File:Starship full stack with Jeep.jpg"
+  },
+  "vehicle-falcon-9-hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Falcon_9_first_stage_attempts_landing_on_ASDS_after_CRS-6_%2817170624412%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "SpaceX · CC0",
+    "license": "CC0",
+    "source_title": "File:Falcon 9 first stage attempts landing on ASDS after CRS-6 (17170624412).jpg"
+  },
+  "vehicle-new-glenn-hero": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/New_Glenn_launch_signals_new_era_for_Space_Launch_Complex_36_%288832112%29.jpg/3840px-New_Glenn_launch_signals_new_era_for_Space_Launch_Complex_36_%288832112%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "U.S. Space Force 45SW by Senior Airman Samuel Becker · Public domain",
+    "license": "Public domain",
+    "source_title": "File:New Glenn launch signals new era for Space Launch Complex 36 (8832112).jpg"
+  },
+  "vehicle-neutron-hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/High-energy_Photon_and_small_Venus_entry_probe_inside_Electron%27s_fairing.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Richard French, Christophe Mandy, Richard Hunter, Ehson Mosleh, Doug Sinclair, Peter Beck, Sara Seager, Janusz J. Petkowski, Christopher E. Carr, David H. Grinspoon, Darrel Baumgardner and on behalf of the Rocket Lab Venus Team · CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source_title": "File:High-energy Photon and small Venus entry probe inside Electron's fairing.webp"
+  },
+  "vehicle-electron-hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Rocket_Lab%E2%80%99s_Electron-launched_private_mission_to_Venus_will_deploy_a_small_probe_from_a_high-energy_Photon.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Richard French, Christophe Mandy, Richard Hunter, Ehson Mosleh, Doug Sinclair, Peter Beck, Sara Seager, Janusz J. Petkowski, Christopher E. Carr, David H. Grinspoon, Darrel Baumgardner and on behalf of the Rocket Lab Venus Team · CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source_title": "File:Rocket Lab’s Electron-launched private mission to Venus will deploy a small probe from a high-energy Photon.webp"
+  },
+  "vehicle-vulcan-hero": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/ULA%27s_Vulcan_VC2S_rocket_launch_%288192438%29.jpg/3840px-ULA%27s_Vulcan_VC2S_rocket_launch_%288192438%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "U.S. Space Force photo by DeAnna Murano · Public domain",
+    "license": "Public domain",
+    "source_title": "File:ULA's Vulcan VC2S rocket launch (8192438).jpg"
+  },
+  "vehicle-sls-hero": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Mega_Moon_rocket-_the_integrated_Space_Launch_System_rocket_and_Orion_spacecraft_at_NASA%E2%80%99s_Kennedy_Space_Center%2C_March_2022.jpg/3840px-Mega_Moon_rocket-_the_integrated_Space_Launch_System_rocket_and_Orion_spacecraft_at_NASA%E2%80%99s_Kennedy_Space_Center%2C_March_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "Kim Shiflett · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Mega Moon rocket- the integrated Space Launch System rocket and Orion spacecraft at NASA’s Kennedy Space Center, March 2022.jpg"
+  },
+  "vehicle-shavit-hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Shavit_3rd_stage.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": ".\n\nThe original uploader was טל ענבר at Hebrew Wikipedia. · CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source_title": "File:Shavit 3rd stage.JPG"
+  }
+}

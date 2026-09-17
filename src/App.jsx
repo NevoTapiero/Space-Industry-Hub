@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { Nav, Footer, ScrollToTop } from './components/ui.jsx'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Nav, Footer, ScrollToTop, ScrollProgress } from './components/ui.jsx'
 import Home from './pages/Home.jsx'
 import Launches from './pages/Launches.jsx'
 import Companies from './pages/Companies.jsx'
@@ -12,11 +12,13 @@ import Sources from './pages/Sources.jsx'
 const Hangar = lazy(() => import('./pages/Hangar.jsx'))
 
 export default function App() {
+  const { pathname } = useLocation()
   return (
     <>
       <ScrollToTop />
+      <ScrollProgress />
       <Nav />
-      <main>
+      <main className="route-fade" key={pathname}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/launches" element={<Launches />} />

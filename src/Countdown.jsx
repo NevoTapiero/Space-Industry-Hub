@@ -36,7 +36,11 @@ export default function Countdown({ target }) {
       <div className="countdown">
         {cells.map((c) => (
           <div className="cd-cell" key={c.label}>
-            <div className="cd-num">{c.num}</div>
+            <div className="cd-num">
+              <span className="cd-tick" key={c.num}>
+                {c.num}
+              </span>
+            </div>
             <div className="cd-label">{c.label}</div>
           </div>
         ))}

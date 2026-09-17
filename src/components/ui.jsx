@@ -122,6 +122,26 @@ export function Footer() {
   )
 }
 
+/* ---------- scroll progress bar ---------- */
+
+export function ScrollProgress() {
+  const [pct, setPct] = useState(0)
+  useEffect(() => {
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      setPct(max > 0 ? (window.scrollY / max) * 100 : 0)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+  return <div className="scroll-progress" style={{ width: `${pct}%` }} />
+}
+
 /* ---------- scroll restore on route change ---------- */
 
 export function ScrollToTop() {
