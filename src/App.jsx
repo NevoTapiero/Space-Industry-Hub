@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Nav, Footer, ScrollToTop } from './components/ui.jsx'
 import Home from './pages/Home.jsx'
@@ -6,8 +7,9 @@ import Companies from './pages/Companies.jsx'
 import Company from './pages/Company.jsx'
 import Vehicles from './pages/Vehicles.jsx'
 import Vehicle from './pages/Vehicle.jsx'
-import Hangar from './pages/Hangar.jsx'
 import Sources from './pages/Sources.jsx'
+
+const Hangar = lazy(() => import('./pages/Hangar.jsx'))
 
 export default function App() {
   return (
@@ -22,7 +24,14 @@ export default function App() {
           <Route path="/companies/:slug" element={<Company />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/vehicles/:slug" element={<Vehicle />} />
-          <Route path="/hangar" element={<Hangar />} />
+          <Route
+            path="/hangar"
+            element={
+              <Suspense fallback={<div className="page container"><div className="loading">LOADING 3D…</div></div>}>
+                <Hangar />
+              </Suspense>
+            }
+          />
           <Route path="/sources" element={<Sources />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
