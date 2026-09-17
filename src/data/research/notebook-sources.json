@@ -1,0 +1,227 @@
+{
+  "notebook": "Space Industry Hub",
+  "sources": [
+    {
+      "title": "Blue Origin",
+      "url": "https://www.blueorigin.com",
+      "domain": "blueorigin.com",
+      "category": "חברות"
+    },
+    {
+      "title": "CASC (China Aerospace)",
+      "url": "http://english.spacechina.com/",
+      "domain": "english.spacechina.com",
+      "category": "חברות"
+    },
+    {
+      "title": "Home | Rocket Factory Augsburg",
+      "url": "https://www.rfa.space",
+      "domain": "rfa.space",
+      "category": "חברות"
+    },
+    {
+      "title": "Rocket Lab",
+      "url": "https://www.rocketlabusa.com",
+      "domain": "rocketlabusa.com",
+      "category": "חברות"
+    },
+    {
+      "title": "SpaceX",
+      "url": "https://www.spacex.com/",
+      "domain": "spacex.com",
+      "category": "חברות"
+    },
+    {
+      "title": "ULA | United Launch Alliance",
+      "url": "https://www.ulalaunch.com",
+      "domain": "ulalaunch.com",
+      "category": "חברות"
+    },
+    {
+      "title": "Axiom Space — Building Era-Defining Space Infrastructure",
+      "url": "https://www.axiomspace.com",
+      "domain": "axiomspace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Category: Space - Ars Technica",
+      "url": "https://arstechnica.com/space/",
+      "domain": "arstechnica.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Home - Firefly Aerospace",
+      "url": "https://fireflyspace.com",
+      "domain": "fireflyspace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Home - Isar Aerospace",
+      "url": "https://www.isaraerospace.com",
+      "domain": "isaraerospace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Launching Ambitions | Arianespace",
+      "url": "https://www.arianespace.com",
+      "domain": "arianespace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Main Engine Cut Off",
+      "url": "https://mainenginecutoff.com",
+      "domain": "mainenginecutoff.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "NASASpaceFlight.com -",
+      "url": "https://www.nasaspaceflight.com",
+      "domain": "nasaspaceflight.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Relativity Space",
+      "url": "https://www.relativityspace.com",
+      "domain": "relativityspace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Sierra Space | Defining the New Era of Space Defense Technology",
+      "url": "https://www.sierraspace.com",
+      "domain": "sierraspace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Space.com: NASA, Space Exploration and Astronomy News",
+      "url": "https://www.space.com",
+      "domain": "space.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Spaceflight Now – The leading source for online space news",
+      "url": "https://spaceflightnow.com",
+      "domain": "spaceflightnow.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "SpaceNews: The space industry's source",
+      "url": "https://spacenews.com",
+      "domain": "spacenews.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Universe Today - Space and Astronomy News",
+      "url": "https://www.universetoday.com",
+      "domain": "universetoday.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Vast – Building Next-Generation Space Infrastructure",
+      "url": "https://www.vastspace.com",
+      "domain": "vastspace.com",
+      "category": "חדשות ומגזינים"
+    },
+    {
+      "title": "Blue Origin",
+      "url": "https://www.youtube.com/@blueorigin",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "Everyday Astronaut",
+      "url": "https://www.youtube.com/@EverydayAstronaut",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "ISRO Official",
+      "url": "https://www.youtube.com/@isroofficial5866",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "Marcus House",
+      "url": "https://www.youtube.com/@MarcusHouse",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "NASA",
+      "url": "https://www.youtube.com/@NASA",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "NASASpaceflight",
+      "url": "https://www.youtube.com/@NASASpaceflight",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "Scott Manley",
+      "url": "https://www.youtube.com/@scottmanley",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "SpaceX",
+      "url": "https://www.youtube.com/@SpaceX",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "United Launch Alliance",
+      "url": "https://www.youtube.com/@UnitedLaunchAlliance",
+      "domain": "youtube.com",
+      "category": "יוטיוב"
+    },
+    {
+      "title": "Gunter's Space Page - Information on spaceflight, launch vehicles and satellites",
+      "url": "https://space.skyrocket.de/",
+      "domain": "space.skyrocket.de",
+      "category": "מעקב ומאגרי מידע"
+    },
+    {
+      "title": "Jonathan's Space Report - Latest Issue",
+      "url": "https://planet4589.org/space/jsr/jsr.html",
+      "domain": "planet4589.org",
+      "category": "מעקב ומאגרי מידע"
+    },
+    {
+      "title": "Next Spaceflight",
+      "url": "https://nextspaceflight.com",
+      "domain": "nextspaceflight.com",
+      "category": "מעקב ומאגרי מידע"
+    },
+    {
+      "title": "CNSA",
+      "url": "http://www.cnsa.gov.cn/english/",
+      "domain": "cnsa.gov.cn",
+      "category": "סוכנויות חלל"
+    },
+    {
+      "title": "European Space Agency",
+      "url": "https://www.esa.int",
+      "domain": "esa.int",
+      "category": "סוכנויות חלל"
+    },
+    {
+      "title": "Indian Space Research Organisation",
+      "url": "https://www.isro.gov.in",
+      "domain": "isro.gov.in",
+      "category": "סוכנויות חלל"
+    },
+    {
+      "title": "JAXA | Japan Aerospace Exploration Agency",
+      "url": "https://global.jaxa.jp",
+      "domain": "global.jaxa.jp",
+      "category": "סוכנויות חלל"
+    },
+    {
+      "title": "NASA",
+      "url": "https://www.nasa.gov/",
+      "domain": "nasa.gov",
+      "category": "סוכנויות חלל"
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+﻿{
+  "id": "259b4629-89b6-4d65-951b-9757955d2319",
+  "title": "Space Industry Hub",
+  "created_at": "2026-09-17T12:02:33+00:00",
+  "last_viewed_at": "2026-09-17T15:47:06+00:00",
+  "modified_at": "2026-09-17T15:47:06+00:00",
+  "is_owner": true,
+  "role": "owner",
+  "sources": [
+    {
+      "type": "web_page",
+      "title": "Axiom Space — Building Era-Defining Space Infrastructure",
+      "url": "https://www.axiomspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Blue Origin - YouTube",
+      "url": "https://www.youtube.com/@blueorigin"
+    },
+    {
+      "type": "web_page",
+      "title": "CNSA",
+      "url": "http://www.cnsa.gov.cn/english/"
+    },
+    {
+      "type": "web_page",
+      "title": "Category: Space - Ars Technica",
+      "url": "https://arstechnica.com/space/"
+    },
+    {
+      "type": "web_page",
+      "title": "Category: Space - Ars Technica",
+      "url": "https://arstechnica.com/space/"
+    },
+    {
+      "type": "web_page",
+      "title": "China Aerospace Science and Technology Corporation",
+      "url": "http://english.spacechina.com/"
+    },
+    {
+      "type": "web_page",
+      "title": "European Space Agency",
+      "url": "https://www.esa.int"
+    },
+    {
+      "type": "web_page",
+      "title": "European Space Agency",
+      "url": "https://www.esa.int"
+    },
+    {
+      "type": "web_page",
+      "title": "Everyday Astronaut - YouTube",
+      "url": "https://www.youtube.com/@EverydayAstronaut"
+    },
+    {
+      "type": "web_page",
+      "title": "Gunter's Space Page - Information on spaceflight, launch vehicles and satellites",
+      "url": "https://space.skyrocket.de/"
+    },
+    {
+      "type": "web_page",
+      "title": "Home - Firefly Aerospace",
+      "url": "https://fireflyspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Home - Firefly Aerospace",
+      "url": "https://fireflyspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Home - Isar Aerospace",
+      "url": "https://www.isaraerospace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Home | Rocket Factory Augsburg",
+      "url": "https://www.rfa.space"
+    },
+    {
+      "type": "web_page",
+      "title": "ISRO Official - YouTube",
+      "url": "https://www.youtube.com/@isroofficial5866"
+    },
+    {
+      "type": "web_page",
+      "title": "ISRO Official - YouTube",
+      "url": "https://www.youtube.com/@isroofficial5866"
+    },
+    {
+      "type": "web_page",
+      "title": "Indian Space Research Organisation",
+      "url": "https://www.isro.gov.in"
+    },
+    {
+      "type": "web_page",
+      "title": "Indian Space Research Organisation",
+      "url": "https://www.isro.gov.in"
+    },
+    {
+      "type": "web_page",
+      "title": "JAXA | Japan Aerospace Exploration Agency",
+      "url": "https://global.jaxa.jp"
+    },
+    {
+      "type": "web_page",
+      "title": "JAXA | Japan Aerospace Exploration Agency",
+      "url": "https://global.jaxa.jp"
+    },
+    {
+      "type": "web_page",
+      "title": "Jonathan's Space Report - Latest Issue",
+      "url": "https://planet4589.org/space/jsr/jsr.html"
+    },
+    {
+      "type": "web_page",
+      "title": "Just a moment...",
+      "url": "https://www.rocketlabusa.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Just a moment...",
+      "url": "https://www.rocketlabusa.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Launching Ambitions | Arianespace",
+      "url": "https://www.arianespace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Launching Ambitions | Arianespace",
+      "url": "https://www.arianespace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Main Engine Cut Off",
+      "url": "https://mainenginecutoff.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Marcus House - YouTube",
+      "url": "https://www.youtube.com/@MarcusHouse"
+    },
+    {
+      "type": "web_page",
+      "title": "Marcus House - YouTube",
+      "url": "https://www.youtube.com/@MarcusHouse"
+    },
+    {
+      "type": "web_page",
+      "title": "NASA",
+      "url": "https://www.nasa.gov/"
+    },
+    {
+      "type": "web_page",
+      "title": "NASA - YouTube",
+      "url": "https://www.youtube.com/@NASA"
+    },
+    {
+      "type": "web_page",
+      "title": "NASASpaceFlight.com -",
+      "url": "https://www.nasaspaceflight.com"
+    },
+    {
+      "type": "web_page",
+      "title": "NASASpaceFlight.com -",
+      "url": "https://www.nasaspaceflight.com"
+    },
+    {
+      "type": "web_page",
+      "title": "NASASpaceflight - YouTube",
+      "url": "https://www.youtube.com/@NASASpaceflight"
+    },
+    {
+      "type": "web_page",
+      "title": "NASASpaceflight - YouTube",
+      "url": "https://www.youtube.com/@NASASpaceflight"
+    },
+    {
+      "type": "web_page",
+      "title": "Next Spaceflight",
+      "url": "https://nextspaceflight.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Relativity Space",
+      "url": "https://www.relativityspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Relativity Space",
+      "url": "https://www.relativityspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Scott Manley - YouTube",
+      "url": "https://www.youtube.com/@scottmanley"
+    },
+    {
+      "type": "web_page",
+      "title": "Scott Manley - YouTube",
+      "url": "https://www.youtube.com/@scottmanley"
+    },
+    {
+      "type": "web_page",
+      "title": "Sierra Space | Defining the New Era of Space Defense Technology",
+      "url": "https://www.sierraspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Space.com: NASA, Space Exploration and Astronomy News",
+      "url": "https://www.space.com"
+    },
+    {
+      "type": "web_page",
+      "title": "SpaceNews: The space industry's source",
+      "url": "https://spacenews.com"
+    },
+    {
+      "type": "web_page",
+      "title": "SpaceNews: The space industry's source",
+      "url": "https://spacenews.com"
+    },
+    {
+      "type": "web_page",
+      "title": "SpaceX",
+      "url": "https://www.spacex.com/"
+    },
+    {
+      "type": "web_page",
+      "title": "SpaceX - YouTube",
+      "url": "https://www.youtube.com/@SpaceX"
+    },
+    {
+      "type": "web_page",
+      "title": "Spaceflight Now – The leading source for online space news",
+      "url": "https://spaceflightnow.com"
+    },
+    {
+      "type": "web_page",
+      "title": "ULA | United Launch Alliance",
+      "url": "https://www.ulalaunch.com"
+    },
+    {
+      "type": "web_page",
+      "title": "ULA | United Launch Alliance",
+      "url": "https://www.ulalaunch.com"
+    },
+    {
+      "type": "web_page",
+      "title": "United Launch Alliance - YouTube",
+      "url": "https://www.youtube.com/@UnitedLaunchAlliance"
+    },
+    {
+      "type": "web_page",
+      "title": "United Launch Alliance - YouTube",
+      "url": "https://www.youtube.com/@UnitedLaunchAlliance"
+    },
+    {
+      "type": "web_page",
+      "title": "Universe Today - Space and Astronomy News",
+      "url": "https://www.universetoday.com"
+    },
+    {
+      "type": "web_page",
+      "title": "Vast – Building Next-Generation Space Infrastructure",
+      "url": "https://www.vastspace.com"
+    },
+    {
+      "type": "web_page",
+      "title": "https://www.blueorigin.com",
+      "url": "https://www.blueorigin.com"
+    }
+  ]
+}

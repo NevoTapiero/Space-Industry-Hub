@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { SOURCES } from '../data/index.js'
+import { SOURCES, NOTEBOOK } from '../data/index.js'
 import { ARTICLES } from '../knowledge.js'
 import { Backdrop, Reveal } from '../components/ui.jsx'
 
@@ -89,6 +89,38 @@ export default function Sources() {
             </Reveal>
           ))}
         </div>
+
+        {/* ---------- notebook monitoring directory ---------- */}
+        {NOTEBOOK.sources.length > 0 && (
+          <>
+            <Reveal>
+              <div className="eyebrow section-gap">מעקב שוטף · NotebookLM</div>
+              <h2 className="h-display" style={{ fontSize: 28, margin: '10px 0 6px' }}>
+                מקורות המעקב
+              </h2>
+              <p className="lead" style={{ marginBottom: 8 }}>
+                {NOTEBOOK.sources.length} המקורות מהמחברת "{NOTEBOOK.notebook}": האתרים, הערוצים והניוזלטרים שמהם נבנית
+                תמונת המצב של התעשייה.
+              </p>
+            </Reveal>
+            {[...new Set(NOTEBOOK.sources.map((s) => s.category))].map((cat) => (
+              <Reveal key={cat}>
+                <div className="eyebrow" style={{ marginTop: 26, marginBottom: 10 }}>
+                  {cat}
+                </div>
+                <div className="filter-row" style={{ margin: 0 }}>
+                  {NOTEBOOK.sources
+                    .filter((s) => s.category === cat)
+                    .map((s) => (
+                      <a key={s.url} className="filter-btn" href={s.url} target="_blank" rel="noreferrer" title={s.domain}>
+                        {s.title} ↗
+                      </a>
+                    ))}
+                </div>
+              </Reveal>
+            ))}
+          </>
+        )}
 
         {/* ---------- foundational articles ---------- */}
         <Reveal>

@@ -42,6 +42,9 @@ export const IMAGES = {
   ...((imagesVehicles && (imagesVehicles.default || imagesVehicles)) || {}),
 }
 
+const notebookFile = files['./research/notebook-sources.json']
+export const NOTEBOOK = (notebookFile && (notebookFile.default || notebookFile)) || { notebook: '', sources: [] }
+
 export const companyBySlug = (slug) => COMPANIES.find((c) => c.slug === slug)
 export const vehicleBySlug = (slug) => VEHICLES.find((v) => v.slug === slug)
 export const vehiclesOfCompany = (slug) => VEHICLES.filter((v) => v.company_slug === slug)
