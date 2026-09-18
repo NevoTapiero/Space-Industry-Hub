@@ -6,7 +6,6 @@ export default function Companies() {
   return (
     <div className="page container">
       <div className="page-head">
-        <div className="eyebrow">Players</div>
         <h1 className="h-display">החברות שמזיזות את התעשייה</h1>
         <p className="lead">פרופיל מלא לכל שחקן: ציר הזמן של הפיתוחים, התוכניות הפעילות, השיגורים הקרובים והחדשות, במקום אחד.</p>
       </div>

@@ -84,7 +84,6 @@ function VehicleGarage() {
         {videos.length > 0 && (
           <div className="panel" style={{ marginTop: 16 }}>
             <div className="panel-title">סרטונים על {vehicle.name_he}</div>
-            <div className="panel-sub">Everyday Astronaut</div>
             {videos.map((v) => (
               <div className="news-item" key={v.video_id}>
                 <a href={`https://www.youtube.com/watch?v=${v.video_id}`} target="_blank" rel="noreferrer">
@@ -107,7 +106,6 @@ export default function Hangar() {
   return (
     <div className="page container">
       <div className="page-head">
-        <div className="eyebrow">3D Garage</div>
         <h1 className="h-display">הגראז'</h1>
         <p className="lead">כל כלי וכל מנוע, בתלת ממד, עם הסבר על כל חלק בלחיצה. המודלים נבנים מנתוני החתך האמיתיים.</p>
       </div>

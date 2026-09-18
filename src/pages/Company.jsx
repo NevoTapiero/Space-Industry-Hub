@@ -20,7 +20,6 @@ export default function Company() {
       <section className="full short">
         <Backdrop imageKey={`company-${c.slug}-hero`} className="full-bg" />
         <div className="full-content">
-          <div className="eyebrow">{c.name_en}</div>
           <h1 className="hero-title">{c.name_he}</h1>
           <p className="hero-sub">{c.tagline_he}</p>
         </div>
@@ -53,7 +52,7 @@ export default function Company() {
             {/* vehicles of this company, real silhouettes */}
             {vehicles.length > 0 && (
               <Reveal>
-                <div className="eyebrow section-gap">הצי · Fleet</div>
+                <h2 className="sec-label section-gap" style={{ display: 'block' }}>הצי</h2>
                 <div className="fleet-grid">
                   {vehicles.map((v) => (
                     <Link key={v.slug} to={`/vehicles/${v.slug}`} className="fleet-card">
@@ -69,8 +68,8 @@ export default function Company() {
             {/* programs with imagery */}
             {c.programs?.length > 0 && (
               <Reveal>
-                <div className="eyebrow section-gap">תוכניות · Programs</div>
-                <div className="program-grid">
+                <h2 className="sec-label section-gap" style={{ display: 'block' }}>התוכניות</h2>
+                <div className="program-grid" style={{ marginTop: 16 }}>
                   {c.programs.map((p) => {
                     const img = getImage(`program-${slugifyName(p.name)}`) || imageForText(`${p.name} ${p.desc_he || ''}`)
                     return (
@@ -102,8 +101,7 @@ export default function Company() {
             {c.timeline?.length > 0 && (
               <>
                 <Reveal>
-                  <div className="eyebrow section-gap">Development Log</div>
-                  <h2 className="h-display" style={{ fontSize: 30, margin: '10px 0 0' }}>
+                  <h2 className="h-display section-gap" style={{ fontSize: 30, margin: 0 }}>
                     ציר הפיתוחים
                   </h2>
                 </Reveal>
@@ -139,12 +137,10 @@ export default function Company() {
           <div style={{ display: 'grid', gap: 18, alignContent: 'start' }}>
             <Reveal className="panel">
               <div className="panel-title">שיגורים קרובים</div>
-              <div className="panel-sub">Upcoming · {c.name_en}</div>
               {data.loading ? <div className="loading">LOADING…</div> : <LaunchList launches={companyLaunches.slice(0, 5)} />}
             </Reveal>
             <Reveal className="panel" delay={80}>
               <div className="panel-title">חדשות</div>
-              <div className="panel-sub">News Feed</div>
               {news.loading ? <div className="loading">LOADING…</div> : <NewsList articles={news.articles.slice(0, 6)} />}
             </Reveal>
           </div>

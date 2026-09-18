@@ -195,13 +195,22 @@ export function Footer() {
 /* ---------- scroll progress bar ---------- */
 
 export function ScrollProgress() {
-  const [pct, setPct] = useState(0)
+  // rAF-batched, writes straight to the DOM: zero React re-renders per frame
+  const ref = useRef(null)
   useEffect(() => {
-    const onScroll = () => {
+    let ticking = false
+    const update = () => {
+      ticking = false
       const max = document.documentElement.scrollHeight - window.innerHeight
-      setPct(max > 0 ? (window.scrollY / max) * 100 : 0)
+      if (ref.current) ref.current.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`
     }
-    onScroll()
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+    update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
@@ -209,7 +218,7 @@ export function ScrollProgress() {
       window.removeEventListener('resize', onScroll)
     }
   }, [])
-  return <div className="scroll-progress" style={{ width: `${pct}%` }} />
+  return <div ref={ref} className="scroll-progress" />
 }
 
 /* ---------- scroll restore on route change ---------- */

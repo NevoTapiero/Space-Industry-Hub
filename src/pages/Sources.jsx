@@ -36,7 +36,6 @@ export default function Sources() {
       <section className="full short" style={{ minHeight: '46vh' }}>
         <Backdrop imageKey="sources_hero" className="full-bg" />
         <div className="full-content">
-          <div className="eyebrow">Knowledge Base · Everyday Astronaut</div>
           <h1 className="hero-title" style={{ fontSize: 'clamp(30px, 4.6vw, 52px)' }}>
             ספריית המקורות
           </h1>
@@ -132,8 +131,7 @@ export default function Sources() {
         {NOTEBOOK.sources.length > 0 && (
           <>
             <Reveal>
-              <div className="eyebrow section-gap">מעקב שוטף · NotebookLM</div>
-              <h2 className="h-display" style={{ fontSize: 28, margin: '10px 0 6px' }}>
+              <h2 className="h-display section-gap" style={{ fontSize: 28, margin: '0 0 6px' }}>
                 מקורות המעקב
               </h2>
               <p className="lead" style={{ marginBottom: 8 }}>
@@ -143,9 +141,10 @@ export default function Sources() {
             </Reveal>
             {[...new Set(NOTEBOOK.sources.map((s) => s.category))].map((cat) => (
               <Reveal key={cat}>
-                <div className="eyebrow" style={{ marginTop: 30, marginBottom: 12 }}>
-                  {cat} · {NOTEBOOK.sources.filter((s) => s.category === cat).length}
-                </div>
+                <h3 className="sec-label" style={{ marginTop: 30, marginBottom: 12 }}>
+                  {cat}
+                  <small>{NOTEBOOK.sources.filter((s) => s.category === cat).length} מקורות</small>
+                </h3>
                 <div className="dir-grid">
                   {NOTEBOOK.sources
                     .filter((s) => s.category === cat)
@@ -166,8 +165,7 @@ export default function Sources() {
 
         {/* ---------- foundational articles ---------- */}
         <Reveal>
-          <div className="eyebrow section-gap">יסודות · Foundations</div>
-          <h2 className="h-display" style={{ fontSize: 28, margin: '10px 0 18px' }}>
+          <h2 className="h-display section-gap" style={{ fontSize: 28, margin: '0 0 18px' }}>
             מאמרי יסוד
           </h2>
         </Reveal>

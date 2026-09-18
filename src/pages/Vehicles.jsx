@@ -7,7 +7,6 @@ export default function Vehicles() {
   return (
     <div className="page container">
       <div className="page-head">
-        <div className="eyebrow">The Fleet</div>
         <h1 className="h-display">כלי השיגור</h1>
         <p className="lead">
           כל כלי מוצג בקנה מידה אמיתי, עם דיאגרמת חתך אינטראקטיבית: לוחצים על כל חלק ומקבלים את ההסבר המלא, המספרים, ומבנה

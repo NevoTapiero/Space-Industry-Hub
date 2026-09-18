@@ -59,9 +59,6 @@ export default function Vehicle() {
       <section className="full short">
         <Backdrop imageKey={`vehicle-${v.slug}-hero`} className="full-bg" />
         <div className="full-content">
-          <div className="eyebrow">
-            {company?.name_en} · {v.name_en}
-          </div>
           <h1 className="hero-title">{v.name_he}</h1>
           <p className="hero-sub">
             <span className="chip accent">{v.status_he}</span>
@@ -90,8 +87,7 @@ export default function Vehicle() {
 
         {/* ---------- the cutaway explorer ---------- */}
         <Reveal>
-          <div className="eyebrow section-gap">Interactive Cutaway</div>
-          <h2 className="h-display" style={{ fontSize: 30, margin: '10px 0 6px' }}>
+          <h2 className="h-display section-gap" style={{ fontSize: 30, margin: '0 0 6px' }}>
             דיאגרמת חתך
           </h2>
           <p className="lead" style={{ marginBottom: 24 }}>
@@ -156,7 +152,7 @@ export default function Vehicle() {
         {/* ---------- fun facts ---------- */}
         {v.fun_facts_he?.length > 0 && (
           <Reveal>
-            <div className="eyebrow section-gap">ידעת ש… · Did You Know</div>
+            <h2 className="h-display section-gap" style={{ fontSize: 26, margin: 0 }}>ידעת ש...</h2>
             <div className="program-grid" style={{ marginTop: 18 }}>
               {v.fun_facts_he.map((f, i) => {
                 const img = imageForText(f)
@@ -181,7 +177,7 @@ export default function Vehicle() {
         {/* ---------- related sources ---------- */}
         {relatedVideos.length > 0 && (
           <Reveal>
-            <div className="eyebrow section-gap">למד לעומק · Everyday Astronaut</div>
+            <h2 className="h-display section-gap" style={{ fontSize: 26, margin: 0 }}>ללמוד לעומק</h2>
             <div className="vid-grid" style={{ marginTop: 18 }}>
               {relatedVideos.map((vid) => (
                 <a key={vid.video_id} className="vid-card" href={`https://www.youtube.com/watch?v=${vid.video_id}`} target="_blank" rel="noreferrer">

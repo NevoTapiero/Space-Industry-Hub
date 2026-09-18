@@ -69,8 +69,7 @@ export default function Home() {
       <section className="page" style={{ paddingBottom: 30 }}>
         <div className="container">
           <Reveal>
-            <div className="eyebrow">The Fleet · קנה מידה אמיתי</div>
-            <h2 className="h-display" style={{ margin: '10px 0 8px' }}>
+            <h2 className="h-display" style={{ margin: '0 0 8px' }}>
               צי השיגור העולמי
             </h2>
             <p className="lead">כל הכלים באתר, זה לצד זה, בקנה מידה אחד. לחיצה על כלי פותחת את דיאגרמת החתך המלאה שלו.</p>
@@ -86,12 +85,10 @@ export default function Home() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 18 }}>
           <Reveal className="panel">
             <div className="panel-title">השיגורים הבאים</div>
-            <div className="panel-sub">Launch Manifest · Live</div>
             {data.loading ? <div className="loading">LOADING…</div> : <LaunchList launches={data.launches.slice(1, 6)} />}
           </Reveal>
           <Reveal className="panel" delay={100}>
             <div className="panel-title">חדשות התעשייה</div>
-            <div className="panel-sub">Industry Feed</div>
             {news.loading ? <div className="loading">LOADING…</div> : <NewsList articles={news.articles} />}
           </Reveal>
         </div>

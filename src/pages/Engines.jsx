@@ -90,7 +90,6 @@ export function EngineDetail({ engine }) {
         {videos.length > 0 && (
           <div className="panel" style={{ marginTop: 16 }}>
             <div className="panel-title">סרטונים על המנוע</div>
-            <div className="panel-sub">Everyday Astronaut</div>
             {videos.map((v) => (
               <div className="news-item" key={v.video_id}>
                 <a href={`https://www.youtube.com/watch?v=${v.video_id}`} target="_blank" rel="noreferrer">
@@ -113,7 +112,6 @@ export default function Engines() {
   return (
     <div className="page container">
       <div className="page-head">
-        <div className="eyebrow">Propulsion Lab</div>
         <h1 className="h-display">מעבדת מנועים</h1>
         <p className="lead">
           כל הדרכים שבהן בני אדם הופכים כימיה לתאוצה: מגז קר ועד זרימה מלאה, עם דיאגרמת זרימה לכל מחזור, ומודל תלת ממדי
@@ -123,7 +121,7 @@ export default function Engines() {
 
       {/* ---------- engines: 3D + specs ---------- */}
       <Reveal>
-        <div className="eyebrow" style={{ marginBottom: 12 }}>המנועים · לחץ לבחירה</div>
+        <h2 className="sec-label" style={{ display: 'block', marginBottom: 12 }}>המנועים</h2>
         <div className="filter-row">
           {ENGINES.map((e) => (
             <button key={e.id} className={`filter-btn ${engineId === e.id ? 'on' : ''}`} onClick={() => setEngineId(e.id)}>
@@ -136,8 +134,7 @@ export default function Engines() {
 
       {/* ---------- cycles catalog ---------- */}
       <Reveal>
-        <div className="eyebrow section-gap">Engine Cycles</div>
-        <h2 className="h-display" style={{ fontSize: 30, margin: '10px 0 8px' }}>
+        <h2 className="h-display section-gap" style={{ fontSize: 30, margin: '0 0 8px' }}>
           מחזורי הנעה, מהפשוט למורכב
         </h2>
         <p className="lead" style={{ marginBottom: 22 }}>

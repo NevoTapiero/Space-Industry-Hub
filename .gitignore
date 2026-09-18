@@ -2,3 +2,11 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# local agent tooling (skills, agents, hooks) stays out of the site repo
+.agents/
+.claude/skills/
+.claude/agents/
+.claude/settings.local.json
+PRODUCT.md
+DESIGN.md

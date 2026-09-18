@@ -50,7 +50,6 @@ export default function Launches() {
   return (
     <div className="page container">
       <div className="page-head">
-        <div className="eyebrow">Launch Manifest · Live</div>
         <h1 className="h-display">לוח שיגורים עולמי</h1>
         <p className="lead">כל השיגורים הקרובים בעולם, מכל החברות, בזמן אמת. אפשר לסנן לפי חברה וללחוץ לשידור החי.</p>
       </div>
