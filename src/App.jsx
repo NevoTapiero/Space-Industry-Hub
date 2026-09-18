@@ -10,6 +10,7 @@ import Vehicle from './pages/Vehicle.jsx'
 import Sources from './pages/Sources.jsx'
 
 const Hangar = lazy(() => import('./pages/Hangar.jsx'))
+const Engines = lazy(() => import('./pages/Engines.jsx'))
 
 export default function App() {
   const { pathname } = useLocation()
@@ -26,6 +27,14 @@ export default function App() {
           <Route path="/companies/:slug" element={<Company />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/vehicles/:slug" element={<Vehicle />} />
+          <Route
+            path="/engines"
+            element={
+              <Suspense fallback={<div className="page container"><div className="loading">LOADING 3D…</div></div>}>
+                <Engines />
+              </Suspense>
+            }
+          />
           <Route
             path="/hangar"
             element={

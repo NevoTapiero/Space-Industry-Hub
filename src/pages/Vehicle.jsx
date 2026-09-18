@@ -159,7 +159,7 @@ export default function Vehicle() {
             <div className="eyebrow section-gap">ידעת ש… · Did You Know</div>
             <div className="program-grid" style={{ marginTop: 18 }}>
               {v.fun_facts_he.map((f, i) => {
-                const img = imageForText(f) || imageForText(v.name_en)
+                const img = imageForText(f)
                 return (
                   <div className="fact-card" key={i}>
                     {img && (

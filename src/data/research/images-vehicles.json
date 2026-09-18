@@ -1,10 +1,4 @@
 {
-  "vehicle-starship-hero": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Starship_full_stack_with_Jeep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "Hotel Pika · CC BY-SA 2.0",
-    "license": "CC BY-SA 2.0",
-    "source_title": "File:Starship full stack with Jeep.jpg"
-  },
   "vehicle-falcon-9-hero": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Falcon_9_first_stage_attempts_landing_on_ASDS_after_CRS-6_%2817170624412%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
     "credit": "SpaceX · CC0",
@@ -24,10 +18,10 @@
     "source_title": "File:High-energy Photon and small Venus entry probe inside Electron's fairing.webp"
   },
   "vehicle-electron-hero": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Rocket_Lab%E2%80%99s_Electron-launched_private_mission_to_Venus_will_deploy_a_small_probe_from_a_high-energy_Photon.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "Richard French, Christophe Mandy, Richard Hunter, Ehson Mosleh, Doug Sinclair, Peter Beck, Sara Seager, Janusz J. Petkowski, Christopher E. Carr, David H. Grinspoon, Darrel Baumgardner and on behalf of the Rocket Lab Venus Team · CC BY 4.0",
-    "license": "CC BY 4.0",
-    "source_title": "File:Rocket Lab’s Electron-launched private mission to Venus will deploy a small probe from a high-energy Photon.webp"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Rocket_Lab_Launch_Complex_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Grumpy Eye · CC BY-SA 2.0",
+    "license": "CC BY-SA 2.0",
+    "source_title": "File:Rocket Lab Launch Complex 1.jpg"
   },
   "vehicle-vulcan-hero": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/ULA%27s_Vulcan_VC2S_rocket_launch_%288192438%29.jpg/3840px-ULA%27s_Vulcan_VC2S_rocket_launch_%288192438%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",

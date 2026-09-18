@@ -9,12 +9,12 @@ const QUERIES = {
   site: {
     home_hero: { q: ['Falcon Heavy Demo Mission launch', 'Iridium-1 launch'], must: /falcon|iridium/i },
     sources_hero: { q: ['Milky Way panorama night', 'night sky stars observatory'], must: /sky|milky|panorama|stars/i },
-    launches_hero: { q: ['Falcon 9 launch long exposure', 'Falcon 9 night launch'], must: /falcon/i },
-    'company-spacex-hero': { q: ['Iridium-1 launch SpaceX', 'Falcon Heavy side boosters landing'], must: /falcon|iridium|spacex/i },
-    'company-blue-origin-hero': { q: ['New Glenn launch', 'New Shepard launch'], must: /glenn|shepard|blue origin/i },
-    'company-rocket-lab-hero': { q: ['Rocket Lab Electron launch', 'Rocket Lab Launch Complex 1'], must: /rocket lab|electron|mahia/i },
+    launches_hero: { q: ['JCSAT launch SpaceX', 'Falcon 9 night launch'], must: /falcon|jcsat/i },
+    'company-spacex-hero': { q: ['Falcon Heavy side boosters landing', 'Falcon Heavy Demo'], must: /falcon|spacex/i },
+    'company-blue-origin-hero': { q: ['New Shepard launch', 'Blue Origin New Shepard'], must: /shepard|blue origin/i },
+    'company-rocket-lab-hero': { q: ['Rocket Lab Electron launch pad', 'Electron rocket Its a Test'], must: /rocket lab|electron|mahia/i },
     'company-nasa-hero': { q: ['Artemis I Prelaunch night', 'Artemis I launch'], must: /artemis|sls/i },
-    'company-ula-hero': { q: ['Vulcan Centaur launch', 'Atlas V launch'], must: /vulcan|atlas|delta/i },
+    'company-ula-hero': { q: ['Atlas V launch night', 'Delta IV Heavy launch'], must: /vulcan|atlas|delta/i },
     'company-israel-space-hero': { q: ['Israel at night from ISS', 'Beresheet lunar'], must: /israel|beresheet/i },
   },
   programs: {
@@ -49,8 +49,8 @@ const QUERIES = {
     'vehicle-starship-hero': { q: ['Starship Super Heavy stacked', 'SpaceX Starship launch site Boca Chica'], must: /starship|super heavy/i },
     'vehicle-falcon-9-hero': { q: ['Falcon 9 first stage landing', 'Falcon 9 launch CRS'], must: /falcon/i },
     'vehicle-new-glenn-hero': { q: ['New Glenn launch NG-1', 'New Glenn Blue Origin'], must: /glenn/i },
-    'vehicle-neutron-hero': { q: ['Rocket Lab Launch Complex Wallops', 'Rocket Lab Electron night launch'], must: /rocket lab|electron|wallops/i },
-    'vehicle-electron-hero': { q: ['Rocket Lab Electron launch', 'Electron rocket Mahia'], must: /electron|rocket lab/i },
+    'vehicle-neutron-hero': { q: ['Rocket Lab Launch Complex Wallops', 'Rocket Lab Neutron'], must: /rocket lab|electron|wallops|neutron/i },
+    'vehicle-electron-hero': { q: ['Electron rocket launch Mahia', 'Electron Rocket Lab liftoff'], must: /electron|rocket lab/i },
     'vehicle-vulcan-hero': { q: ['Vulcan Centaur Cert-1', 'Vulcan Centaur rocket launch'], must: /vulcan/i },
     'vehicle-sls-hero': { q: ['Artemis I launch NHQ', 'Space Launch System rollout'], must: /artemis|sls|space launch system/i },
     'vehicle-shavit-hero': { q: ['Shavit rocket', 'Ofek launch'], must: /shavit|ofek/i },
@@ -62,7 +62,7 @@ const API = 'https://commons.wikimedia.org/w/api.php'
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 async function searchCommons(query) {
-  await sleep(1200)
+  await sleep(2500)
   const params = new URLSearchParams({
     action: 'query',
     format: 'json',
@@ -123,7 +123,19 @@ async function verify(url) {
   }
 }
 
+import { readFileSync, existsSync } from 'node:fs'
 const only = process.argv[2]
+const usedUrls = new Set()
+// prime with picks already committed in OTHER groups, so partial reruns stay duplicate-free
+for (const g of Object.keys(QUERIES)) {
+  if (only && g === only) continue
+  const f = `src/data/research/images-${g}.json`
+  if (existsSync(f)) {
+    try {
+      for (const v of Object.values(JSON.parse(readFileSync(f, 'utf8')))) usedUrls.add(v.url)
+    } catch {}
+  }
+}
 for (const [group, keys] of Object.entries(QUERIES)) {
   if (only && group !== only) continue
   const out = {}
@@ -133,9 +145,18 @@ for (const [group, keys] of Object.entries(QUERIES)) {
     for (const q of spec.q) {
       const results = await searchCommons(q)
       lastResults = results
-      const cand = pick(results, spec.must)
+      const cand = results.find(
+        (r) =>
+          r.width >= 1200 &&
+          r.width >= r.height * 0.6 &&
+          OK_LICENSE.test(r.license) &&
+          !BAD_TITLE.test(r.title) &&
+          spec.must.test(r.title) &&
+          !usedUrls.has(r.url),
+      )
       if (cand && (await verify(cand.url))) {
         chosen = cand
+        usedUrls.add(cand.url)
         break
       }
     }

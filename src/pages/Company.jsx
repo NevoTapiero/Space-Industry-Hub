@@ -109,7 +109,9 @@ export default function Company() {
                 </Reveal>
                 <div className="timeline" style={{ '--tl-color': c.color }}>
                   {c.timeline.map((t, i) => {
-                    const thumb = imageForText(`${t.title_he} ${t.tag_he || ''} ${t.text_he}`)
+                    const heroUrl = getImage(`company-${c.slug}-hero`)?.url
+                    let thumb = imageForText(`${t.title_he} ${t.tag_he || ''} ${t.text_he}`)
+                    if (thumb && thumb.url === heroUrl) thumb = null
                     return (
                       <Reveal key={i} className={`tl-item ${thumb ? 'has-thumb' : ''}`} delay={Math.min(i * 40, 200)}>
                         <div>

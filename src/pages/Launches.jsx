@@ -9,12 +9,17 @@ function LaunchCard({ l, delay }) {
   const d = new Date(l.net)
   return (
     <Reveal delay={delay}>
-      <div className="launch-card">
+      <div className={`launch-card ${l.image ? 'has-img' : ''}`}>
         <div className="lc-date">
           <div className="lc-day">{d.getDate()}</div>
           <div className="lc-month">{MONTHS_EN[d.getMonth()]}</div>
           <div className="lc-time">{d.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })}</div>
         </div>
+        {l.image && (
+          <div className="lc-img">
+            <img src={l.image} alt="" loading="lazy" />
+          </div>
+        )}
         <div>
           <div className="lc-name">{l.name}</div>
           <div className="lc-details">

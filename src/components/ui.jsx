@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { getImage } from '../data/index.js'
+import { useAuth } from '../lib/auth.jsx'
 
 /* ---------- scroll reveal ---------- */
 
@@ -53,7 +54,8 @@ const LINKS = [
   { to: '/launches', label: 'שיגורים' },
   { to: '/companies', label: 'חברות' },
   { to: '/vehicles', label: 'כלי שיגור' },
-  { to: '/hangar', label: 'האנגר' },
+  { to: '/engines', label: 'מנועים' },
+  { to: '/hangar', label: 'הגראז\'' },
   { to: '/sources', label: 'מקורות' },
 ]
 
@@ -85,11 +87,79 @@ export function Nav() {
           ))}
         </nav>
         <LiveClock />
+        <AuthControl />
         <button className="nav-burger" onClick={() => setOpen(!open)} aria-label="תפריט">
           ☰
         </button>
       </div>
     </header>
+  )
+}
+
+function AuthControl() {
+  const { user, signIn, signOut, enabled } = useAuth()
+  const [open, setOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [state, setState] = useState('idle') // idle | sending | sent | error
+  const [errMsg, setErrMsg] = useState('')
+
+  if (!enabled) return null
+
+  const submit = async (e) => {
+    e.preventDefault()
+    if (!email.includes('@')) return
+    setState('sending')
+    const { error } = await signIn(email.trim())
+    if (error) {
+      setState('error')
+      setErrMsg(error)
+    } else setState('sent')
+  }
+
+  return (
+    <div className="auth-box">
+      {user ? (
+        <button className="auth-btn" onClick={() => signOut()} title={user.email}>
+          <span className="dot" style={{ marginInlineEnd: 7 }} />
+          {user.email.split('@')[0]} · יציאה
+        </button>
+      ) : (
+        <button className="auth-btn" onClick={() => setOpen(!open)}>
+          התחברות
+        </button>
+      )}
+      {open && !user && (
+        <div className="auth-pop">
+          {state === 'sent' ? (
+            <p className="part-desc" style={{ margin: 0 }}>
+              נשלח קישור התחברות אל {email}. פתח את המייל ולחץ עליו.
+            </p>
+          ) : (
+            <form onSubmit={submit}>
+              <div className="panel-title" style={{ fontSize: 15 }}>
+                כניסה ל-SpaceHub
+              </div>
+              <p className="part-desc" style={{ margin: '6px 0 10px', fontSize: 13 }}>
+                בלי סיסמה: מקבלים קישור חד פעמי למייל, והצפיות שלך נשמרות בין מכשירים.
+              </p>
+              <input
+                className="search-box"
+                style={{ padding: '10px 14px', fontSize: 14 }}
+                type="email"
+                dir="ltr"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button className="btn primary" style={{ width: '100%', marginTop: 10, padding: '10px 0' }} disabled={state === 'sending'}>
+                {state === 'sending' ? 'שולח…' : 'שלח לי קישור'}
+              </button>
+              {state === 'error' && <div className="err-note">{errMsg}</div>}
+            </form>
+          )}
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -180,7 +250,12 @@ export function StatusChip({ status }) {
 export function LaunchList({ launches, withWebcast = false }) {
   if (!launches.length) return <div className="loading">NO DATA</div>
   return launches.map((l) => (
-    <div className="launch-row" key={l.id}>
+    <div className={`launch-row ${l.image ? 'has-img' : ''}`} key={l.id}>
+      {l.image && (
+        <div className="row-thumb">
+          <img src={l.image} alt="" loading="lazy" />
+        </div>
+      )}
       <div>
         <div className="launch-name">{l.name}</div>
         <div className="launch-details">
@@ -204,12 +279,19 @@ export function LaunchList({ launches, withWebcast = false }) {
 export function NewsList({ articles }) {
   if (!articles.length) return <div className="loading">NO DATA</div>
   return articles.map((a) => (
-    <div className="news-item" key={a.id}>
-      <a href={a.url} target="_blank" rel="noreferrer">
-        {a.title}
-      </a>
-      <div className="news-meta">
-        {a.site} · {fmtDate(a.published)}
+    <div className={`news-item ${a.image ? 'has-img' : ''}`} key={a.id}>
+      {a.image && (
+        <div className="row-thumb">
+          <img src={a.image} alt="" loading="lazy" />
+        </div>
+      )}
+      <div>
+        <a href={a.url} target="_blank" rel="noreferrer">
+          {a.title}
+        </a>
+        <div className="news-meta">
+          {a.site} · {fmtDate(a.published)}
+        </div>
       </div>
     </div>
   ))

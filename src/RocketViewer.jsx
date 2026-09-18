@@ -172,7 +172,7 @@ function buildStack(vehicle, pal) {
       }
     }
 
-    items.push({ key: sec.id, idx, y0, y1, midM: (sec.from_m + sec.to_m) / 2, nodes })
+    items.push({ key: sec.id, idx, y0, y1, R, midM: (sec.from_m + sec.to_m) / 2, nodes })
   })
 
   // overlays attach to the stack section containing their midpoint
@@ -262,7 +262,7 @@ function buildStack(vehicle, pal) {
   return items
 }
 
-function VehicleModel({ vehicle, sepRef }) {
+function VehicleModel({ vehicle, sepRef, selectedId, onSelectPart }) {
   const pal = PALETTES[vehicle.slug] || DEFAULT_PALETTE
   const items = useMemo(() => buildStack(vehicle, pal), [vehicle])
   const refs = useRef([])
@@ -277,16 +277,37 @@ function VehicleModel({ vehicle, sepRef }) {
 
   return (
     <group>
-      {items.map((it, i) => (
-        <group key={it.key} ref={(el) => (refs.current[i] = el)}>
-          {it.nodes}
-        </group>
-      ))}
+      {items.map((it, i) => {
+        const sel = selectedId === it.key
+        return (
+          <group
+            key={it.key}
+            ref={(el) => (refs.current[i] = el)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onSelectPart?.(sel ? null : it.key)
+            }}
+            onPointerOver={(e) => {
+              e.stopPropagation()
+              document.body.style.cursor = 'pointer'
+            }}
+            onPointerOut={() => (document.body.style.cursor = 'auto')}
+          >
+            {it.nodes}
+            {sel && (
+              <mesh position={[0, (it.y0 + it.y1) / 2, 0]}>
+                <cylinderGeometry args={[it.R * 1.35 + 0.12, it.R * 1.35 + 0.12, it.y1 - it.y0 + 0.1, 36, 1, true]} />
+                <meshBasicMaterial color="#6ea8ff" transparent opacity={0.16} depthWrite={false} side={2} />
+              </mesh>
+            )}
+          </group>
+        )
+      })}
     </group>
   )
 }
 
-function Scene({ vehicle, exploded, spinning }) {
+function Scene({ vehicle, exploded, spinning, selectedId, onSelectPart }) {
   const ref = useRef()
   const sep = useRef(0)
   useFrame((_, delta) => {
@@ -296,7 +317,7 @@ function Scene({ vehicle, exploded, spinning }) {
   })
   return (
     <group ref={ref} position={[0, -4.6, 0]}>
-      <VehicleModel vehicle={vehicle} sepRef={sep} />
+      <VehicleModel vehicle={vehicle} sepRef={sep} selectedId={selectedId} onSelectPart={onSelectPart} />
       {/* pad ring */}
       <mesh position={[0, -0.06, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[1.4, 2.6, 48]} />
@@ -306,8 +327,14 @@ function Scene({ vehicle, exploded, spinning }) {
   )
 }
 
-export default function RocketViewer() {
-  const [slug, setSlug] = useState('starship')
+export default function RocketViewer({ slug: slugProp, onSlugChange, selectedId, onSelectPart }) {
+  const [slugState, setSlugState] = useState('starship')
+  const slug = slugProp ?? slugState
+  const setSlug = (s) => {
+    setSlugState(s)
+    onSlugChange?.(s)
+    onSelectPart?.(null)
+  }
   const [exploded, setExploded] = useState(false)
   const [spinning, setSpinning] = useState(true)
   const vehicle = VEHICLES.find((v) => v.slug === slug) || VEHICLES[0]
@@ -335,7 +362,7 @@ export default function RocketViewer() {
             }
           >
             <Stars radius={60} depth={30} count={2600} factor={3} fade speed={0.5} />
-            <Scene vehicle={vehicle} exploded={exploded} spinning={spinning} />
+            <Scene vehicle={vehicle} exploded={exploded} spinning={spinning} selectedId={selectedId} onSelectPart={onSelectPart} />
           </Suspense>
           <OrbitControls enablePan={false} minDistance={4.5} maxDistance={24} target={[0, 0.6, 0]} />
         </Canvas>
@@ -349,8 +376,8 @@ export default function RocketViewer() {
         </button>
       </div>
       <p className="hint">
-        {vehicle.name_he} · {vehicle.dims.height_m} מטר · המודל נבנה אוטומטית מנתוני החתך המאומתים של הכלי, באותם ממדים
-        אמיתיים. גרירה מסובבת, גלגלת מקרבת, ופירוק לרכיבים מציג כל חלק בנפרד.
+        {vehicle.name_he} · {vehicle.dims.height_m} מטר · לחיצה על כל חלק במודל פותחת את ההסבר שלו. גרירה מסובבת, גלגלת
+        מקרבת, ופירוק לרכיבים מציג כל חלק בנפרד.
       </p>
     </div>
   )

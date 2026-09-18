@@ -12,40 +12,22 @@
     "source_title": "File:Blue Origin BE-4 rocket engine, sn 103, April 2018 -- LOX inlet side view, minus nozzle.jpg"
   },
   "program-new-shepard": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/New_Shepard_spacecraft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "NASA · Public domain",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Mike_Pence_%26_New_Shepard.jpg/3840px-Mike_Pence_%26_New_Shepard.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "Kim Shiflett · Public domain",
     "license": "Public domain",
-    "source_title": "File:New Shepard spacecraft.jpg"
+    "source_title": "File:Mike Pence & New Shepard.jpg"
   },
   "program-shavit": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Shavit_3rd_stage.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": ".\n\nThe original uploader was טל ענבר at Hebrew Wikipedia. · CC BY-SA 3.0",
-    "license": "CC BY-SA 3.0",
-    "source_title": "File:Shavit 3rd stage.JPG"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Shavit_2_%2B_observers.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Alex Gal (אלכס גל) · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Shavit 2 + observers.jpg"
   },
   "program-beresheet-2": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Beresheet_model_on_Habima_Square_20190222_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
     "credit": "TaBaZzz · CC BY-SA 4.0",
     "license": "CC BY-SA 4.0",
     "source_title": "File:Beresheet model on Habima Square 20190222 03.jpg"
-  },
-  "program-gateway": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Gateway-configuration-20180705.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "NASA · Public domain",
-    "license": "Public domain",
-    "source_title": "File:Gateway-configuration-20180705.jpg"
-  },
-  "program-commercial-crew": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/SpaceX_Crew_Dragon.jpg/3840px-SpaceX_Crew_Dragon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "credit": "NASA/SpaceX · Public domain",
-    "license": "Public domain",
-    "source_title": "File:SpaceX Crew Dragon.jpg"
-  },
-  "program-electron": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Rocket_Lab%E2%80%99s_Electron-launched_private_mission_to_Venus_will_deploy_a_small_probe_from_a_high-energy_Photon.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "Richard French, Christophe Mandy, Richard Hunter, Ehson Mosleh, Doug Sinclair, Peter Beck, Sara Seager, Janusz J. Petkowski, Christopher E. Carr, David H. Grinspoon, Darrel Baumgardner and on behalf of the Rocket Lab Venus Team · CC BY 4.0",
-    "license": "CC BY 4.0",
-    "source_title": "File:Rocket Lab’s Electron-launched private mission to Venus will deploy a small probe from a high-energy Photon.webp"
   },
   "program-starship": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Starship_full_stack_with_Jeep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -54,15 +36,33 @@
     "source_title": "File:Starship full stack with Jeep.jpg"
   },
   "program-falcon-9": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Falcon_9_first_stage_attempts_landing_on_ASDS_after_CRS-6_%2817170624412%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "credit": "SpaceX · CC0",
-    "license": "CC0",
-    "source_title": "File:Falcon 9 first stage attempts landing on ASDS after CRS-6 (17170624412).jpg"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Falcon_9_Flight_20_OG2_first_stage_on_the_landing_pad_%2823908478245%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Ben Brockert · CC BY-SA 2.0",
+    "license": "CC BY-SA 2.0",
+    "source_title": "File:Falcon 9 Flight 20 OG2 first stage on the landing pad (23908478245).jpg"
   },
   "program-dragon": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/ISS-31_SpaceX_Dragon_spacecraft_is_grappled_by_Canadarm2.jpg/3840px-ISS-31_SpaceX_Dragon_spacecraft_is_grappled_by_Canadarm2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "credit": "NASA · Public domain",
     "license": "Public domain",
     "source_title": "File:ISS-31 SpaceX Dragon spacecraft is grappled by Canadarm2.jpg"
+  },
+  "program-vulcan-centaur": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Vulcan_pathfinder_test_article_%28KSC-20210826-PH-KLS01_0073%29.jpg/3840px-Vulcan_pathfinder_test_article_%28KSC-20210826-PH-KLS01_0073%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "credit": "Kim Shiflett · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Vulcan pathfinder test article (KSC-20210826-PH-KLS01 0073).jpg"
+  },
+  "program-atlas-v": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Vandenberg_launches_Atlas_V_Rocket_141213-F-UP786-155.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "Staff Sgt. Jim Araos · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Vandenberg launches Atlas V Rocket 141213-F-UP786-155.jpg"
+  },
+  "program-delta-iv": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Delta_IV_launch_2013-08-28.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "credit": "U.S. Air Force/Joe Davila · Public domain",
+    "license": "Public domain",
+    "source_title": "File:Delta IV launch 2013-08-28.jpg"
   }
 }

@@ -35,3 +35,22 @@ create policy "public read vehicles" on public.vehicles for select using (true);
 
 drop policy if exists "public read sources" on public.sources;
 create policy "public read sources" on public.sources for select using (true);
+
+-- per-user watched-video tracking (requires Supabase Auth)
+create table if not exists public.watched_videos (
+  user_id uuid not null default auth.uid(),
+  video_id text not null,
+  watched_at timestamptz not null default now(),
+  primary key (user_id, video_id)
+);
+
+alter table public.watched_videos enable row level security;
+
+drop policy if exists "own rows select" on public.watched_videos;
+create policy "own rows select" on public.watched_videos for select using (auth.uid() = user_id);
+
+drop policy if exists "own rows insert" on public.watched_videos;
+create policy "own rows insert" on public.watched_videos for insert with check (auth.uid() = user_id);
+
+drop policy if exists "own rows delete" on public.watched_videos;
+create policy "own rows delete" on public.watched_videos for delete using (auth.uid() = user_id);

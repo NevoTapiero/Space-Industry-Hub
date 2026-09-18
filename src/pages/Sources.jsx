@@ -2,11 +2,14 @@ import { useMemo, useState } from 'react'
 import { SOURCES, NOTEBOOK } from '../data/index.js'
 import { ARTICLES } from '../knowledge.js'
 import { Backdrop, Reveal } from '../components/ui.jsx'
+import { useAuth } from '../lib/auth.jsx'
 
 export default function Sources() {
   const videos = SOURCES.videos || []
   const [topic, setTopic] = useState(null)
   const [q, setQ] = useState('')
+  const { watched, toggleWatched, user, enabled } = useAuth()
+  const watchedCount = videos.filter((v) => watched.has(v.video_id)).length
 
   const topics = useMemo(() => {
     const counts = {}
@@ -44,6 +47,21 @@ export default function Sources() {
       </section>
 
       <div className="container" style={{ paddingBlock: 40, paddingBottom: 90 }}>
+        {/* watch progress */}
+        {videos.length > 0 && (
+          <div className="watch-progress">
+            <div className="wp-row">
+              <span>
+                צפית ב-<b>{watchedCount}</b> מתוך {videos.length} סרטונים
+              </span>
+              {!user && enabled && <span className="dim" style={{ fontSize: 12.5 }}>התחבר למעלה כדי לשמור את הצפיות בין מכשירים</span>}
+            </div>
+            <div className="wp-bar">
+              <div className="wp-fill" style={{ width: `${(watchedCount / videos.length) * 100}%` }} />
+            </div>
+          </div>
+        )}
+
         <input className="search-box" placeholder="חיפוש: Raptor, מחזורי מנועים, ריאיון…" value={q} onChange={(e) => setQ(e.target.value)} />
 
         {topics.length > 0 && (
@@ -66,28 +84,48 @@ export default function Sources() {
         )}
 
         <div className="vid-grid" style={{ marginTop: 20 }}>
-          {filtered.map((v, i) => (
-            <Reveal key={v.video_id} delay={Math.min(i * 40, 200)}>
-              <a className="vid-card" style={{ display: 'block' }} href={`https://www.youtube.com/watch?v=${v.video_id}`} target="_blank" rel="noreferrer">
-                <div className="vid-thumb">
-                  <img src={`https://img.youtube.com/vi/${v.video_id}/hqdefault.jpg`} alt="" loading="lazy" />
-                  <div className="play">▶</div>
-                </div>
-                <div className="vid-body">
-                  <div className="vid-title">{v.title}</div>
-                  <div className="vid-summary">{v.summary_he}</div>
-                  <div className="vid-tags">
-                    <span className="chip">{v.year}</span>
-                    {(v.topics_he || []).slice(0, 3).map((t) => (
-                      <span className="chip" key={t}>
-                        {t}
-                      </span>
-                    ))}
+          {filtered.map((v, i) => {
+            const isWatched = watched.has(v.video_id)
+            return (
+              <Reveal key={v.video_id} delay={Math.min(i * 40, 200)}>
+                <a
+                  className={`vid-card ${isWatched ? 'watched' : ''}`}
+                  style={{ display: 'block' }}
+                  href={`https://www.youtube.com/watch?v=${v.video_id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="vid-thumb">
+                    <img src={`https://img.youtube.com/vi/${v.video_id}/hqdefault.jpg`} alt="" loading="lazy" />
+                    <div className="play">▶</div>
+                    <button
+                      className={`watch-toggle ${isWatched ? 'on' : ''}`}
+                      title={isWatched ? 'סמן כלא נצפה' : 'סמן כנצפה'}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        toggleWatched(v.video_id)
+                      }}
+                    >
+                      ✓{isWatched ? ' נצפה' : ''}
+                    </button>
                   </div>
-                </div>
-              </a>
-            </Reveal>
-          ))}
+                  <div className="vid-body">
+                    <div className="vid-title">{v.title}</div>
+                    <div className="vid-summary">{v.summary_he}</div>
+                    <div className="vid-tags">
+                      <span className="chip">{v.year}</span>
+                      {(v.topics_he || []).slice(0, 3).map((t) => (
+                        <span className="chip" key={t}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              </Reveal>
+            )
+          })}
         </div>
 
         {/* ---------- notebook monitoring directory ---------- */}
