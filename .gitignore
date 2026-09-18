@@ -10,3 +10,6 @@ dist/
 .claude/settings.local.json
 PRODUCT.md
 DESIGN.md
+
+.codex/
+skills-lock.json
