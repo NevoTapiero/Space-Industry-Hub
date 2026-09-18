@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { vehicleBySlug, companyBySlug, SOURCES, imageForText } from '../data/index.js'
 import Cutaway from '../components/Cutaway.jsx'
 import EngineCluster from '../components/EngineCluster.jsx'
+import MissionProfile from '../components/MissionProfile.jsx'
 import { Backdrop, Reveal } from '../components/ui.jsx'
 
 const KIND_HE = {
@@ -148,6 +149,17 @@ export default function Vehicle() {
             )}
           </div>
         </div>
+
+        {/* ---------- mission profile ---------- */}
+        <Reveal>
+          <h2 className="h-display section-gap" style={{ fontSize: 26, margin: '0 0 6px' }}>פרופיל טיסה</h2>
+          <p className="lead" style={{ marginBottom: 16 }}>
+            מה קורה מרגע ההצתה ועד המסלול, ולאן חוזר הבוסטר.
+          </p>
+          <div className="cycle-diagram-box" style={{ maxWidth: 760 }}>
+            <MissionProfile vehicle={v} />
+          </div>
+        </Reveal>
 
         {/* ---------- fun facts ---------- */}
         {v.fun_facts_he?.length > 0 && (

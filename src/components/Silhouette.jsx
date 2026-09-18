@@ -3,14 +3,21 @@
 
 export function silhouetteParts(vehicle, ppm) {
   const H = vehicle.dims.height_m
-  const r = Math.max((vehicle.dims.diameter_m / 2) * ppm, 2.5)
+  const coreR = Math.max((vehicle.dims.diameter_m / 2) * ppm, 2.5)
+  const rOf = (sec) => Math.max(((sec.diameter_m ?? vehicle.dims.diameter_m) / 2) * ppm, 2)
   const y = (m) => (H - m) * ppm
   const stack = vehicle.sections.filter((s) => !s.overlay)
   const overlays = vehicle.sections.filter((s) => s.overlay)
+  const rAt = (m) => {
+    const sec = stack.find((x) => m >= x.from_m && m <= x.to_m)
+    return sec ? rOf(sec) : coreR
+  }
   const parts = []
-  let maxX = r
+  let maxX = coreR
 
   for (const sec of stack) {
+    const r = rOf(sec)
+    maxX = Math.max(maxX, r)
     const y0 = y(sec.to_m)
     const y1 = y(sec.from_m)
     const isTop = Math.abs(sec.to_m - H) < 0.02 * H
@@ -42,6 +49,7 @@ export function silhouetteParts(vehicle, ppm) {
     const y0 = y(sec.to_m)
     const y1 = y(sec.from_m)
     const hh = y1 - y0
+    const r = rAt((sec.from_m + sec.to_m) / 2)
     if (sec.kind === 'srb') {
       const sr = Math.max(r * 0.45, 2.5)
       const gap = Math.max(1.5, ppm * 0.15)

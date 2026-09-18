@@ -1,6 +1,7 @@
 import { Suspense, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Html } from '@react-three/drei'
+import { Vector2 } from 'three'
 import { VEHICLES } from './data/index.js'
 
 // Data-driven 3D: every vehicle is generated from the same verified section
@@ -66,11 +67,22 @@ function EngineBell({ x, z, y, scale, color }) {
   )
 }
 
+// smooth ogive nose profile for LatheGeometry (base radius -> tip)
+function ogivePoints(r, h, n = 18) {
+  const pts = []
+  for (let i = 0; i <= n; i++) {
+    const t = i / n
+    pts.push(new Vector2(r * Math.pow(Math.cos((t * Math.PI) / 2), 0.72), t * h))
+  }
+  return pts
+}
+
 function buildStack(vehicle, pal) {
-  // returns array of {key, y0, y1, midM, nodes} in normalized units
+  // returns array of {key, y0, y1, midM, R, nodes} in normalized units
   const H = vehicle.dims.height_m
   const s = 9.5 / H
-  const R = Math.max((vehicle.dims.diameter_m / 2) * s * 1.22, 0.26)
+  const rOf = (sec) => Math.max(((sec.diameter_m ?? vehicle.dims.diameter_m) / 2) * s * 1.22, 0.22)
+  const coreR = Math.max((vehicle.dims.diameter_m / 2) * s * 1.22, 0.26)
   const toY = (m) => m * s
   const stack = vehicle.sections.filter((x) => !x.overlay)
   const overlays = vehicle.sections.filter((x) => x.overlay)
@@ -91,6 +103,8 @@ function buildStack(vehicle, pal) {
   }
 
   stack.forEach((sec, idx) => {
+    const R = rOf(sec)
+    const Rbelow = idx > 0 ? rOf(stack[idx - 1]) : R
     const y0 = toY(sec.from_m)
     const y1 = toY(sec.to_m)
     const h = y1 - y0
@@ -99,10 +113,15 @@ function buildStack(vehicle, pal) {
     const nodes = []
 
     if (sec.kind === 'engines') {
+      // hull-colored skirt with a dark base ring, real bells below
       nodes.push(
-        <mesh key="body" position={[0, mid, 0]}>
-          <cylinderGeometry args={[R, R, h, 44]} />
-          <Metal color={pal.dark} rough={0.5} />
+        <mesh key="body" position={[0, mid + h * 0.1, 0]}>
+          <cylinderGeometry args={[R, R, h * 0.8, 44]} />
+          <Metal color={pal.hull} />
+        </mesh>,
+        <mesh key="base" position={[0, y0 + h * 0.1, 0]}>
+          <cylinderGeometry args={[R * 1.005, R * 1.005, h * 0.2, 44]} />
+          <Metal color={pal.dark} rough={0.55} />
         </mesh>,
       )
       const layout = ENGINE_LAYOUTS[sec.engine?.layout] || (sec.engine?.count > 1 ? () => ring(Math.min(sec.engine.count, 12), 0.6).map(([x, z]) => [x, z, 0.35]) : ENGINE_LAYOUTS.single)
@@ -113,13 +132,18 @@ function buildStack(vehicle, pal) {
       if (sec.kind === 'escape_tower') {
         nodes.push(
           <mesh key="tower" position={[0, mid, 0]}>
-            <cylinderGeometry args={[0.03, R * 0.3, h, 16]} />
+            <cylinderGeometry args={[0.02, R * 0.55, h * 0.8, 16]} />
+            <Metal color={pal.hull} />
+          </mesh>,
+          <mesh key="motor" position={[0, y0 + h * 0.25, 0]}>
+            <cylinderGeometry args={[R * 0.6, R * 0.6, h * 0.28, 20]} />
             <Metal color={pal.dark} />
           </mesh>,
         )
       } else {
-        const coneH = Math.min(h, R * 3)
-        const cylH = h - coneH
+        // smooth ogive: cylinder base + lathe nose
+        const noseH = Math.min(h * 0.62, R * 3.2)
+        const cylH = h - noseH
         if (cylH > 0.02)
           nodes.push(
             <mesh key="fcyl" position={[0, y0 + cylH / 2, 0]}>
@@ -128,15 +152,19 @@ function buildStack(vehicle, pal) {
             </mesh>,
           )
         nodes.push(
-          <mesh key="cone" position={[0, y0 + cylH + coneH * 0.42, 0]}>
-            <cylinderGeometry args={[R * 0.3, R, coneH * 0.84, 44]} />
-            <Metal color={pal.hull} />
-          </mesh>,
-          <mesh key="cap" position={[0, y0 + cylH + coneH * 0.84, 0]}>
-            <sphereGeometry args={[R * 0.3, 24, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
+          <mesh key="nose" position={[0, y0 + cylH, 0]}>
+            <latheGeometry args={[ogivePoints(R, noseH), 44]} />
             <Metal color={pal.hull} />
           </mesh>,
         )
+        // taper down to the stage below when the fairing is wider
+        if (R > Rbelow + 0.015)
+          nodes.push(
+            <mesh key="boat" position={[0, y0 - 0.001, 0]}>
+              <cylinderGeometry args={[R, Rbelow, 0.001 + Math.min(0.3, h * 0.08), 44]} />
+              <Metal color={pal.hull} />
+            </mesh>,
+          )
       }
     } else if (sec.kind === 'capsule') {
       nodes.push(
@@ -148,7 +176,7 @@ function buildStack(vehicle, pal) {
     } else if (sec.kind === 'interstage' || sec.kind === 'thrust_structure' || sec.kind === 'avionics') {
       nodes.push(
         <mesh key="dark" position={[0, mid, 0]}>
-          <cylinderGeometry args={[R, R, h, 44]} />
+          <cylinderGeometry args={[R, Rbelow, h, 44]} />
           <Metal color={pal.accent} rough={0.5} />
         </mesh>,
       )
@@ -161,6 +189,13 @@ function buildStack(vehicle, pal) {
         </mesh>,
         ...seamRings(y0, y1, R),
       )
+      if (Math.abs(R - Rbelow) > 0.015)
+        nodes.push(
+          <mesh key="taper" position={[0, y0 + 0.06, 0]}>
+            <cylinderGeometry args={[R, Rbelow, 0.12, 44]} />
+            <Metal color={isTank ? pal.tank : pal.hull} />
+          </mesh>,
+        )
       // cable raceway on taller sections
       if (h > 1.2) {
         nodes.push(
@@ -186,6 +221,7 @@ function buildStack(vehicle, pal) {
         const st = stack[i]
         return midM >= st.from_m && midM <= st.to_m
       }) || items[0]
+    const R = ownerItem.R
     const nodes = []
 
     if (sec.kind === 'gridfins') {

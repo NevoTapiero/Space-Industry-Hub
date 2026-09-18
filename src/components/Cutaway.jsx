@@ -1,6 +1,7 @@
 // Interactive to-scale cutaway schematic. Renders a vehicle's section list
 // (meters, bottom-to-top) as a blueprint-style side view: every part is
 // clickable, with engineering-drawing leader lines out to the margins.
+// Sections may carry their own diameter_m (wide fairings, narrow upper stages).
 
 const VB_W = 560
 const DRAW_H = 560
@@ -23,20 +24,30 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
   const { dims, sections } = vehicle
   const H = dims.height_m
   const s = DRAW_H / H
-  const r = Math.max((dims.diameter_m / 2) * s, 7)
+  const coreR = Math.max((dims.diameter_m / 2) * s, 7)
+  const rOf = (sec) => Math.max(((sec.diameter_m ?? dims.diameter_m) / 2) * s, 5)
   const y = (m) => TOP_PAD + (H - m) * s
   const baseline = y(0)
 
   const stack = sections.filter((x) => !x.overlay)
   const overlays = sections.filter((x) => x.overlay)
 
+  // radius of the stack section that contains a given height (for overlay offsets)
+  const rAt = (m) => {
+    const sec = stack.find((x) => m >= x.from_m && m <= x.to_m)
+    return sec ? rOf(sec) : coreR
+  }
+
   // ----- shapes -----
   const shapes = []
 
-  for (const sec of stack) {
+  stack.forEach((sec, i) => {
+    const r = rOf(sec)
     const y0 = y(sec.to_m)
     const y1 = y(sec.from_m)
     const isTop = Math.abs(sec.to_m - H) < 0.02 * H
+    // radius of the section below, for smooth width transitions
+    const below = i > 0 ? rOf(stack[i - 1]) : r
     let el
     if (isTop && ['fairing', 'nosecone', 'payload', 'capsule', 'escape_tower'].includes(sec.kind)) {
       if (sec.kind === 'capsule') el = <path className="shape" d={capsuleShape(CX, r, y0, y1)} />
@@ -49,11 +60,11 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
       const n = Math.min(sec.engine?.count || 3, 5)
       const bells = []
       const bw = (r * 2) / (n + 1)
-      for (let i = 0; i < n; i++) {
-        const bx = CX - r + bw * (i + 1)
+      for (let j = 0; j < n; j++) {
+        const bx = CX - r + bw * (j + 1)
         bells.push(
           <path
-            key={i}
+            key={j}
             className="shape"
             d={`M ${bx - bw * 0.26} ${y1 - 1} L ${bx - bw * 0.4} ${y1 + 9} L ${bx + bw * 0.4} ${y1 + 9} L ${bx + bw * 0.26} ${y1 - 1} Z`}
           />,
@@ -66,22 +77,39 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
         </>
       )
     } else if (sec.kind === 'interstage') {
+      // taper when widths differ (e.g. LVSA on SLS)
+      const el2 =
+        Math.abs(below - r) > 1 ? (
+          <path className="shape" d={`M ${CX - below} ${y1} L ${CX - r} ${y0} L ${CX + r} ${y0} L ${CX + below} ${y1} Z`} />
+        ) : (
+          <rect className="shape" x={CX - r} y={y0} width={r * 2} height={y1 - y0} />
+        )
       el = (
         <>
-          <rect className="shape" x={CX - r} y={y0} width={r * 2} height={y1 - y0} />
+          {el2}
           <line x1={CX - r} y1={(y0 + y1) / 2} x2={CX + r} y2={(y0 + y1) / 2} stroke="rgba(148,175,230,0.35)" strokeDasharray="3 3" strokeWidth="1" />
         </>
+      )
+    } else if (Math.abs(below - r) > 1) {
+      // width change without an interstage: draw with a short taper at the base
+      const taperH = Math.min((y1 - y0) * 0.25, 14)
+      el = (
+        <path
+          className="shape"
+          d={`M ${CX - below} ${y1} L ${CX - r} ${y1 - taperH} L ${CX - r} ${y0} L ${CX + r} ${y0} L ${CX + r} ${y1 - taperH} L ${CX + below} ${y1} Z`}
+        />
       )
     } else {
       el = <rect className="shape" x={CX - r} y={y0} width={r * 2} height={y1 - y0} />
     }
     shapes.push({ sec, el, edgeX: r, midY: (y0 + y1) / 2 })
-  }
+  })
 
   for (const sec of overlays) {
     const y0 = y(sec.to_m)
     const y1 = y(sec.from_m)
     const h = y1 - y0
+    const r = rAt((sec.from_m + sec.to_m) / 2)
     let el = null
     let edgeX = r
     if (sec.kind === 'gridfins') {
@@ -144,6 +172,7 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
   }
 
   // ----- labels: alternate sides, resolve vertical collisions per side -----
+  const maxEdge = Math.max(...shapes.map((sh) => sh.edgeX))
   const ordered = [...shapes].sort((a, b) => a.midY - b.midY)
   const sides = { left: [], right: [] }
   ordered.forEach((sh, i) => {
@@ -168,7 +197,7 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
       aria-label={`דיאגרמת חתך של ${vehicle.name_he}`}
     >
       {/* ground + dimension line */}
-      <line x1={CX - r - 40} y1={baseline + 12} x2={CX + r + 40} y2={baseline + 12} stroke="rgba(148,175,230,0.3)" strokeWidth="1" />
+      <line x1={CX - maxEdge - 26} y1={baseline + 12} x2={CX + maxEdge + 26} y2={baseline + 12} stroke="rgba(148,175,230,0.3)" strokeWidth="1" />
       <line className="cut-dim" x1={30} y1={y(H)} x2={30} y2={baseline} />
       <line className="cut-dim" x1={24} y1={y(H)} x2={44} y2={y(H)} />
       <line className="cut-dim" x1={24} y1={baseline} x2={44} y2={baseline} />
@@ -192,7 +221,7 @@ export default function Cutaway({ vehicle, selectedId, onSelect }) {
       {labels.map((l) => {
         const sel = selectedId === l.sec.id
         const x1 = l.side === 'right' ? CX + l.edgeX : CX - l.edgeX
-        const xElbow = l.side === 'right' ? CX + r + 58 : CX - r - 58
+        const xElbow = l.side === 'right' ? CX + maxEdge + 40 : CX - maxEdge - 40
         const xText = l.side === 'right' ? VB_W - 6 : 6
         const anchor = l.side === 'right' ? 'end' : 'start'
         return (

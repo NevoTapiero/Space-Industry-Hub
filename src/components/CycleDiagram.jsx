@@ -12,21 +12,22 @@ function Tank({ x, y, color, label }) {
   )
 }
 
-function Pump({ x, y, label }) {
+function Pump({ x, y, label = 'משאבה', side = 1 }) {
   return (
     <g>
-      <circle cx={x} cy={y} r={13} fill="#10182f" stroke={C.metal} strokeWidth="1.4" />
-      <path d={`M ${x - 5} ${y + 5} L ${x} ${y - 6} L ${x + 5} ${y + 5}`} fill="none" stroke={C.metal} strokeWidth="1.4" />
-      {label && <text x={x} y={y + 26} textAnchor="middle" fontSize="8.5" fill="#7f90b6" fontFamily="Heebo">{label}</text>}
+      <circle cx={x} cy={y} r={13} fill="#10182f" stroke={C.metal} strokeWidth="1.6" />
+      <path d={`M ${x - 5} ${y + 5} L ${x} ${y - 6} L ${x + 5} ${y + 5}`} fill="none" stroke={C.metal} strokeWidth="1.6" />
+      <text x={x + side * 18} y={y + 3.5} textAnchor={side === 1 ? 'start' : 'end'} fontSize="8.5" fill="#93a3c4" fontFamily="Heebo">{label}</text>
     </g>
   )
 }
 
-function Turbine({ x, y }) {
+function Turbine({ x, y, label = 'טורבינה', labelDy = 0, side = 1 }) {
   return (
     <g>
-      <rect x={x - 11} y={y - 11} width={22} height={22} rx={4} fill="#10182f" stroke={C.hot} strokeWidth="1.4" />
-      <path d={`M ${x - 5} ${y - 5} L ${x + 5} ${y + 5} M ${x + 5} ${y - 5} L ${x - 5} ${y + 5}`} stroke={C.hot} strokeWidth="1.3" />
+      <rect x={x - 11} y={y - 11} width={22} height={22} rx={4} fill="#10182f" stroke={C.hot} strokeWidth="1.6" />
+      <path d={`M ${x - 5} ${y - 5} L ${x + 5} ${y + 5} M ${x + 5} ${y - 5} L ${x - 5} ${y + 5}`} stroke={C.hot} strokeWidth="1.4" />
+      <text x={x + side * 16} y={y + 3.5 + labelDy} textAnchor={side === 1 ? 'start' : 'end'} fontSize="8.5" fill="#93a3c4" fontFamily="Heebo">{label}</text>
     </g>
   )
 }
@@ -64,8 +65,33 @@ function Chamber({ x = 160, y = 168, solid = false }) {
   )
 }
 
+const MARKER_ID = { [C.fuel]: 'arr-fuel', [C.ox]: 'arr-ox', [C.hot]: 'arr-hot', [C.elec]: 'arr-elec', [C.metal]: 'arr-metal' }
+
 function Line({ d, color, dashed }) {
-  return <path d={d} fill="none" stroke={color} strokeWidth="1.6" strokeDasharray={dashed ? '4 3' : 'none'} markerEnd="none" opacity="0.9" />
+  return (
+    <path
+      d={d}
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeDasharray={dashed ? '4 3' : 'none'}
+      markerEnd={`url(#${MARKER_ID[color] || 'arr-metal'})`}
+      opacity="0.92"
+      strokeLinecap="round"
+    />
+  )
+}
+
+function ArrowDefs() {
+  return (
+    <defs>
+      {Object.entries(MARKER_ID).map(([color, id]) => (
+        <marker key={id} id={id} viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 8 4 L 0 8 z" fill={color} />
+        </marker>
+      ))}
+    </defs>
+  )
 }
 
 const FT = [70, 34]
@@ -237,6 +263,7 @@ export default function CycleDiagram({ cycleId }) {
   if (!Layout) return null
   return (
     <svg viewBox="0 0 320 240" className="cycle-svg" role="img">
+      <ArrowDefs />
       <Layout />
       {/* legend */}
       <g fontFamily="Heebo" fontSize="8.5">

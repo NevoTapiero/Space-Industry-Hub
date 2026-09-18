@@ -65,11 +65,11 @@ export function AuthProvider({ children }) {
     [user],
   )
 
-  const signIn = useCallback(async (email) => {
+  const signInWithGoogle = useCallback(async () => {
     if (!supabase) return { error: 'Supabase לא מוגדר' }
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: window.location.origin },
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin },
     })
     return { error: error?.message || null }
   }, [])
@@ -77,7 +77,7 @@ export function AuthProvider({ children }) {
   const signOut = useCallback(() => supabase?.auth.signOut(), [])
 
   return (
-    <AuthCtx.Provider value={{ user, watched, toggleWatched, signIn, signOut, enabled: !!supabase }}>
+    <AuthCtx.Provider value={{ user, watched, toggleWatched, signInWithGoogle, signOut, enabled: !!supabase }}>
       {children}
     </AuthCtx.Provider>
   )

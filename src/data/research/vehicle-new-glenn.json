@@ -321,7 +321,8 @@
           "value": "פי 2 מחרטום סטנדרטי של 5 מטרים"
         }
       ],
-      "engine": null
+      "engine": null,
+      "diameter_m": 7
     }
   ],
   "fun_facts_he": [
